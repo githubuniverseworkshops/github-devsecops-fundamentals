@@ -1,0 +1,58 @@
+.gh-repo-settings {
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.25em 0.75em;
+}
+
+.gh-repo-settings-menu {
+  background-color: #111;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.25em 0.75em;
+}
+
+.gh-repo-settings-menu-selected-item {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.25em 0.75em;
+  border-left: 0.2em solid blue;
+}
+
+.gh-repo-settings-button {
+  background-color: rgb(246, 248, 250);
+  color: #000;
+  padding: 0.25em 0.75em;
+  border-style: solid;
+  border-radius: 0.25em;
+  border-color: rgba(31, 35, 40, 0.15);
+  border-width: 0.1em;
+}
+
+.gh-button-green {
+  background-color: green;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.25em 0.75em;
+  border-radius: 0.25em;
+}
+
+.gh-button-grey {
+  background-color: #eee;
+  color: #000;
+  font-weight: bold;
+  padding: 0.25em 0.75em;
+  border-radius: 0.25em;
+}
+
+.gh-button-green > .gh-button-green-with-dropdown {
+  border-left-style: solid;
+  border-left-color: #070;
+  margin-left: 0.25em;
+  padding-left: 0.25em;
+}
+
+.hidden {
+  display: none;
+}
