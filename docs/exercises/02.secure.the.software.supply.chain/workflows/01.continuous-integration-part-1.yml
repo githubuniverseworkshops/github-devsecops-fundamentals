@@ -1,0 +1,32 @@
+  security-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v3
+        with:
+          config-file: >-
+            ./.github/dependency-review-config.yml
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript
+          setup-python-dependencies: "false"
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2

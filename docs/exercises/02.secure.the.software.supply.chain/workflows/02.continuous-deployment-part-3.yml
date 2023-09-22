@@ -1,0 +1,12 @@
+- name: Create tag for the new version
+  run: |
+      git config --global user.name "${GITHUB_ACTOR}"
+      git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+      if git tag -a "$new_version" -m "Version $new_version"; then
+      git push --follow-tags origin "$new_version"
+      else
+      echo "Failed to creat tag $new_version, it probably already exists"
+      fi
+  env:
+      new_version: ${{ steps.get_new_version.outputs.new_version }}-release
