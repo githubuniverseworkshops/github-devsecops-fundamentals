@@ -1,0 +1,33 @@
+{
+  "name": "github-devsecops-fundamentals",
+  "version": "1.0.0",
+  "description": "GitHub Universe 2023: GitHub DevSecOps Fundamentals",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "ui-test": "playwright test",
+    "unit-test": "jest --config=jest.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/githubuniverseworkshops/github-devsecops-fundamentals.git"
+  },
+  "keywords": [
+    "GitHub",
+    "DevSecOps"
+  ],
+  "author": "services@github.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/githubuniverseworkshops/github-devsecops-fundamentals/issues"
+  },
+  "homepage": "https://github.com/githubuniverseworkshops/github-devsecops-fundamentals#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.38.1",
+    "@types/node": "^20.8.2",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}

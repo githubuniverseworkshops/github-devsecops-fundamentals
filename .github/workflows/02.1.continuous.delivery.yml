@@ -1,0 +1,60 @@
+name: Version Changes to the Main Branch
+
+on:
+  push:
+    branches:
+      - main
+  workflow_call: {}
+
+jobs:
+  version-main-branch-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: generate-app-token
+        with:
+          app-id: ${{ vars.APP_ID_ACTIONS_ASSISTANT }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY_ACTIONS_ASSISTANT }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate-app-token.outputs.token }}
+
+      - name: Get last version number
+        id: get_last_version
+        run: |
+          # Retrieve the last git tag, as we will only be processing one delivery line.
+          last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          echo "Last version is $last_version"
+          echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
+
+      - name: Get new version number
+        id: get_new_version
+        run: |
+          major=$(echo $last_version | cut -d. -f1)
+          minor=$(echo $last_version | cut -d. -f2)
+          patch=$(echo $last_version | cut -d. -f3)
+
+          new_patch=$((patch+1))
+
+          new_version="$major.$minor.$new_patch"
+
+          echo "New version is $new_version"
+          echo "new_version=$new_version" >> "$GITHUB_OUTPUT"
+        env:
+          last_version: ${{ steps.get_last_version.outputs.last_version }}
+
+      - name: Create tag for the new version
+        run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+          if git tag -a "$new_version" -m "Version $new_version"; then
+            git push --follow-tags origin "$new_version"
+          else
+            echo "Failed to creat tag $new_version, it probably already exists"
+          fi
+        env:
+          new_version: ${{ steps.get_new_version.outputs.new_version }}-pre-release

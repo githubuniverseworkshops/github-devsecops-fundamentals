@@ -1,0 +1,158 @@
+---
+site_url: https://studious-spork-n89w31m.pages.github.io
+site_name: GitHub DevSecOps Fundamental
+site_author: Igwe Kalu <igwejk@github.com>
+site_description: GitHub Universe 2023 | Workshop
+
+remote_name: origin
+remote_branch: gh-pages
+
+# edit_uri: blob/main/docs/
+edit_uri: edit/main/docs/
+
+repo_url: https://github.com/demos-by-igwejk/github-devsecops-fundamentals
+
+repo_name: gh-devsecops-fundamentals
+
+theme:
+  name: material
+
+  icon:
+    logo: simple/githubactions
+    # edit: material/pencil
+    # view: material/eye
+
+  favicon: assets/img/favicon.ico
+
+  locale: en
+
+  palette:
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      media: "(prefers-color-scheme: dark)"
+
+    # # Palette toggle for automatic mode
+    # - toggle:
+    #     icon: material/brightness-auto
+    #     name: Switch to dark mode
+    #   media: "(prefers-color-scheme)"
+
+    # # Palette toggle for light mode
+    # - scheme: default
+    #   toggle:
+    #     icon: material/brightness-7
+    #     name: Switch to system preference
+    #   media: "(prefers-color-scheme: light)"
+
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+
+plugins:
+  - search
+
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - md_in_html
+
+  - codehilite:
+      linenums: true
+      guess_lang: false
+
+  - toc:
+      permalink: true
+      separator: "-"
+
+  - def_list
+  - footnotes
+  - meta
+
+  - pymdownx.betterem:
+      smart_enable: all
+
+  - pymdownx.caret
+
+  - pymdownx.critic:
+      mode: view
+
+  - pymdownx.details
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.tabbed:
+      alternate_style: true
+
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+
+  - pymdownx.tilde
+
+extra_javascript:
+  # KATEX
+  - assets/javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+  # Sortable table
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - assets/javascripts/tables.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+
+nav:
+  - index.md
+  - Labs Instructions:
+      - Introduction: Labs-Instructions/index.md
+      - Collaborate:
+          - Labs-Instructions/01.Collaborate/index.md
+          - Labs-Instructions/01.Collaborate/01.md
+          - Labs-Instructions/01.Collaborate/02.md
+          # - Labs-Instructions/01.Collaborate/03.md
+      - Secure the Software Supply Chain:
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/index.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/00.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/01.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/02.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/02-extra.md
+      - Automate-Release:
+          - Labs-Instructions/03.Automate-Release/index.md
+          - Labs-Instructions/03.Automate-Release/01.md
+          - Labs-Instructions/03.Automate-Release/02.md
+  # - Tetris Game: Tetris/index.html

@@ -1,0 +1,7 @@
+# https://squidfunk.github.io/mkdocs-material/getting-started/#with-pip
+mkdocs
+mkdocs-material
+mkdocs-macros-plugin
+mkdocs-minify-plugin
+mkdocs-redirects
+nodeenv
