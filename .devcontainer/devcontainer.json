@@ -1,0 +1,47 @@
+{
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "32gb"
+  },
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": ".."
+  },
+  "postAttachCommand": "python -m mkdocs serve --clean --dev-addr 127.0.0.1:8080",
+  "forwardPorts": [
+    8080
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.vscode-pull-request-github",
+        "ms-azuretools.vscode-docker",
+        "github.vscode-github-actions",
+        "ms-python.python",
+        "esbenp.prettier-vscode",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "ms-python.mypy-type-checker",
+        "ms-python.pylint",
+        "ms-python.vscode-pylance",
+        "ms-vsliveshare.vsliveshare",
+        "ms-playwright.playwright",
+        "GitHub.copilot-chat",
+        "GitHub.copilot",
+        "pomdtr.excalidraw-editor"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    }
+  },
+  "portsAttributes": {
+    "8080": {
+      "label": "Site",
+    }
+  }
+}
