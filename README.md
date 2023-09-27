@@ -45,6 +45,7 @@ This workshop is intended for the benefit of any audience who has interest in ad
 
   > [!IMPORTANT]
   > Keep your @handle handy.
+
 - A device with a browser with sufficient screen estate convenient for coding.
 - [GitHub Codespaces](https://github.com/features/codespaces)
 
