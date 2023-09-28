@@ -1,0 +1,98 @@
+---
+site_url: https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals
+site_name: GitHub DevSecOps Fundamental
+site_author: Igwe Kalu <igwejk@github.com>
+site_description: GitHub Universe 2023 | Workshop
+
+remote_name: origin
+remote_branch: gh-pages
+
+# edit_uri: blob/main/docs/
+edit_uri: edit/main/docs/
+repo_url: https://github.com/githubuniverseworkshops/github-devsecops-fundamentals/
+repo_name: GitHub
+
+theme:
+  name: material
+  icon:
+    logo: simple/githubactions
+  locale: en
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - codehilite:
+      linenums: true
+      guess_lang: false
+  - toc:
+      permalink: true
+      separator: "-"
+  - def_list
+  - footnotes
+  - meta
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic:
+      mode: view
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.tilde
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js
+  - javascripts/tables.js
+
+nav:
+  - index.md
+  - Labs:
+      - Value Stream Management: Value-Stream-Management/index.md
+      - Version Control: Version-Control/index.md
+      - Securing the Software Supply Chain: Software-Supply-Chain/index.md
+      - Release Automation: Release-Automation/index.md
