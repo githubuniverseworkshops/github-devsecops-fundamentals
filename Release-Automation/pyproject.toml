@@ -1,0 +1,49 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "release-automation"
+version = "0.1.0"
+description = ""
+authors = ["Nick Alteen <ncalteen@github.com>"]
+readme = "README.md"
+packages = [{ include = "release_automation" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mkdocs = "^1.5.3"
+mkdocs-bootstrap386 = "^0.0.2"
+flask = "^2.3.3"
+black = "^23.9.1"
+flask-sqlalchemy = "^3.1.1"
+nox = "^2023.4.22"
+flask-restful = "^0.3.10"
+
+[tool.poetry.scripts]
+app = "release_automation:app"
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint]
+output-format = "text"
+max-nested-blocks = 5
+argument-naming-style = "snake_case"
+attr-naming-style = "snake_case"
+class-naming-style = "PascalCase"
+const-naming-style = "UPPER_CASE"
+function-naming-style = "snake_case"
+method-naming-style = "snake_case"
+module-naming-style = "snake_case"
+max-line-length = 88
+max-module-lines = 1000
+
+[tool.black]
+line-length = 88
+
+[tool.coverage.run]
+omit = [".*", "*/site-packages/*"]
+
+[tool.coverage.report]
+fail_under = 80

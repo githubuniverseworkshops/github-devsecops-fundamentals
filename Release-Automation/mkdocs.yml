@@ -1,0 +1,29 @@
+site_name: DevSecOps Fundamentals
+site_url: https://ncalteen.github.io/pages-example
+repo_url: https://github.com/ncalteen/pages-example
+remote_name: ncalteen
+
+theme:
+  name: bootstrap386
+  nav_style: dark
+
+nav:
+  - Home: README.md
+  - Git:
+      - Bash Commands: git/bash.md
+      - Basic Git: git/basic.md
+      - Advanced Git: git/advanced.md
+      - GitHub Cheatsheet: git/github.md
+      - Submodules vs Subtrees: git/submodules-vs-subtrees.md
+  - Guides:
+      - What is Git: guides/what-is-git.md
+      - Install Git: guides/install-git.md
+      - 'Command: `git init`': guides/git-init.md
+      - 'Command: `git clone`': guides/git-clone.md
+      - 'Command: `git pull`': guides/git-pull.md
+      - 'Command: `git add`': guides/git-add.md
+      - 'Command: `git commit`': guides/git-commit.md
+      - 'Command: `git push`': guides/git-push.md
+      - 'Command: `git remote`': guides/git-remote.md
+      - 'Command: `git status`': guides/git-status.md
+  - Universe Home: https://githubuniverse.com

@@ -1,0 +1,30 @@
+{
+  "editor.inlineSuggest.enabled": true,
+  "editor.rulers": [80],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "html.format.templating": true,
+  "markdownlint.config": {
+    "default": true,
+    "MD030": {
+      "ul_multi": 1,
+      "ul_single": 1,
+      "ol_multi": 1,
+      "ol_single": 1
+    }
+  },
+  "markdown.extension.list.indentationSize": "adaptive",
+  "markdown.extension.italic.indicator": "_",
+  "markdown.extension.orderedList.marker": "one",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "pylint.interpreter": [],
+  "pylint.path": ["~/.venv/bin/pylint"],
+  "isort.args": ["--profile", "black"]
+}

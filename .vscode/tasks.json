@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Python: Install Dependencies",
+      "type": "shell",
+      "command": "poetry install",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Python: Test",
+      "type": "shell",
+      "command": "poetry run pytest",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "Python: Run App",
+      "type": "shell",
+      "command": "poetry run flask run --host=0.0.0.0 --port=3000",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  ]
+}
