@@ -9,24 +9,30 @@
   <a href="#learning-objectives">Learning Objectives</a>
 </p>
 
-![end-to-end](./docs/media/e2e-github.png)
+![End-to-end workflow](./img/e2e-github.png)
 
-This self-paced workshop and introduces you to the fundamentals of DevSecOps using GitHub.
+This self-paced workshop introduces learners to the fundamentals of DevSecOps
+using GitHub.
 
-For audiences at the start of their DevSecOps journey, the workshop addresses the following key concerns:
+For teams at the start of their DevSecOps journey, the workshop addresses the
+following key concerns:
 
-- How do I align the quest for high velocity delivery with the goals and visions of my organization?
-- How do I efficiently develop a project and manage code?
-- How do I securely package artifacts and store them for distribution?
-- How do I securely deploy artifacts/packages?
-- How do I generally automate processes in the business?
+- _How do I align the quest for high velocity delivery with the goals and
+  visions of my organization?_
+- _How do I efficiently develop a project and manage code?_
+- _How do I securely package artifacts and store them for distribution?_
+- _How do I securely deploy artifacts/packages?_
+- _How do I automate business processes?_
 
-For the experts who are further along or advanced in their DevSecOps adoption journey, the workshop provides guidance and challenges you to reduce complications in the implementation of DevSecOps practices:
+For the teams who are further along in their DevSecOps journey, this workshop
+provides guidance and challenges you to reduce complications and streamline
+developer workflows:
 
-- How do I consolidate tools and remove complications due to tool-bloat?
-- How do I simplify the software supply chain process?
+- _How do I consolidate tools and remove complications due to tool-bloat?_
+- _How do I simplify the software supply chain process?_
 
-This workshop is intended for the benefit of any audience who has interest in addressing the above concerns.
+This workshop is intended for the benefit of any audience who has interest in
+addressing the above concerns.
 
 ## Learning Objectives
 
@@ -39,14 +45,15 @@ This workshop is intended for the benefit of any audience who has interest in ad
 
 ## :mega: Prerequisites
 
+- A computer with internet access
 - A GitHub account
 
-  You may create a new GitHub account [here](https://github.com/join), if you do not already have one.
+  You may create a new GitHub account [here](https://github.com/join), if you do
+  not already have one.
 
-  > [!IMPORTANT]
-  > Keep your @handle handy.
-- A device with a browser with sufficient screen estate convenient for coding.
-- [GitHub Codespaces](https://github.com/features/codespaces)
+  > [!NOTE]
+  >
+  > Make note your username (`@handle`)!
 
 ## Labs
 
@@ -57,7 +64,6 @@ This workshop is intended for the benefit of any audience who has interest in ad
 
 ## :books: Resources
 
-- Reference Workflow Archetype
 - [Create diagrams to convey information through charts and graphs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
 - [Include diagrams in your Markdown files with Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/)
 - [Security hardening for GitHub Actions](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)
