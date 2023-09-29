@@ -32,7 +32,7 @@ request (PR) is successfully reviewed and merged into our default branch,
 
    # The following permissions are required to deploy to GitHub Pages.
    permissions:
-     contents: read
+     contents: write
      pages: write
      id-token: write
 
@@ -78,8 +78,8 @@ request (PR) is successfully reviewed and merged into our default branch,
            id: pages
            uses: actions/configure-pages@v3
 
-         # Deploy the updated content to the `gh-pages` branch and update the
-         # currently-running site.
+         # Deploy the updated content to the `github-pages` branch and update
+         # the currently-running site.
          - name: Deploy to GitHub Pages
            id: deploy
            run: |
@@ -125,3 +125,86 @@ Once you're ready, you can merge your PR into `main`.
 1. Click **Merge pull request**
 1. Click **Confirm merge**
 1. Click **Delete branch**
+
+Now that you have a workflow in place, it's time to make some changes and see it
+in action!
+
+## Step 4: Create a Branch
+
+1. In your local repository or codespace, update your repository and create a
+   new branch
+
+   ```bash
+   git checkout main
+   git pull
+   git checkout -b new-feature
+   ```
+
+1. Make some changes to the site (try updating the following text!)
+
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+   consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+1. Stage and commit your changes
+
+   ```bash
+   git add .
+   git commit -m 'Updating site contents'
+   ```
+
+1. Push your new branch to the remote on GitHub
+
+   ```bash
+   git push -u origin new-feature
+   ```
+
+## Step 5: Create a Pull Request
+
+1. Navigate to your repository on GitHub.com
+1. Click the **Pull requests** tab
+1. In the **compare** drop-down menu, select your branch (e.g. `cd-workflow`)
+1. Click **Create pull request**
+1. Enter a title and description for your PR
+1. Click **Create pull request**
+
+As with the last PR, feel free to have another person review and approve your
+changes. Otherwise, go ahead and merge them into `main`.
+
+1. Click the cog icon next to the **Reviewers** section and add a reviewer
+1. Click **assign yourself** to assign the PR to yourself
+1. (Optional) Add any labels, projects, and milestones
+
+## Step 6: Merge
+
+Once you're ready, you can merge your PR into `main`.
+
+1. Click **Merge pull request**
+1. Click **Confirm merge**
+1. Click **Delete branch**
+
+Now that the PR has been merged, your continuous deployment action will be
+invoked!
+
+## Step 7: Monitor GitHub Actions
+
+1. Navigate to your repository on GitHub.com
+1. Click the **Actions** tab
+1. Locate and open the currently-running **Continuous Deployment** action
+1. Click the **Deploy** step and review the log outputs
+
+In the logs, you should see a log line similar to the below:
+
+```plain
+INFO    -  Your documentation should shortly be available at: https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/
+```
+
+1. Open the link from the logs to view your site!
+
+## Next Steps
+
+Congratulations! You have now enabled continuous deployment to GitHub Pages!
+Next, it's time to configure [Release Management](./release-management.md).

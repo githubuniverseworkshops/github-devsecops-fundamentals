@@ -9,7 +9,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -25,6 +25,8 @@ jobs:
     # Only run if the PR was merged.
     if: ${{ github.event.pull_request.merged == true }}
 
+    environment: github-pages
+
     steps:
       - name: Checkout
         id: checkout
@@ -35,7 +37,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
-          cache: poetry
+          cache: pip
 
       - name: Install Dependencies
         id: install
@@ -51,3 +53,20 @@ jobs:
         id: deploy
         run: |
           poetry run mkdocs gh-deploy --force --theme material
+
+      # Get the version and update the tags to use in the release
+      - name: Tag Commit
+        id: tag-commit
+        uses: issue-ops/semver@v0.1.0
+        with:
+          manifest-path: pyproject.toml
+          workspace: ${{ github.workspace }}
+          ref: main
+
+      # Use the version output from the previous step for the release
+      # Prepend a 'v' to the beginning (e.g. 'v1.2.3')
+      - name: Create Release
+        id: create-release
+        uses: issue-ops/releaser@main
+        with:
+          tag: v${{ steps.tag-commit.outputs.version }}

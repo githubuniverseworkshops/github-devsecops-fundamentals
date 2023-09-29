@@ -246,7 +246,7 @@ typing = ["typing-extensions (>=4.7.1)"]
 [[package]]
 name = "ghp-import"
 version = "2.1.0"
-description = "Copy your docs directly to the gh-pages branch."
+description = "Copy your docs directly to the github-pages branch."
 optional = false
 python-versions = "*"
 files = [

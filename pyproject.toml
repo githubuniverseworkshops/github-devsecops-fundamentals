@@ -4,11 +4,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "github-devsecops-fundamentals"
-version = "0.1.0"
+version = "0.1.2"
 description = "GitHub DevSecOps Fundamentals"
 authors = ["Nick Alteen <ncalteen@github.com>"]
 readme = "README.md"
-packages = [{ include = "docs" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
