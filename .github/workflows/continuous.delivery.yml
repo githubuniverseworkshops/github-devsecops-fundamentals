@@ -4,20 +4,35 @@ on:
   push:
     tags:
       - "*pre-release*"
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch: {}
 
 permissions:
   contents: read
   packages: write
+  pages: write
 
 jobs:
-  package:
-    uses: ./.github/workflows/package.yml
-    with:
-      publish: true
-      package-name: ${{ github.event.repository.owner.login }}
-      package-namespace: ${{ github.event.repository.name }}
-      package-registry: ghcr.io
-    secrets:
-      package-registry-owner: ${{ github.event.repository.owner.login }}
-      package-registry-token: ${{ secrets.GITHUB_TOKEN }}
+  package-delivery:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup GitHub Pages
+      uses: actions/configure-pages@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        enablement: ture
+    - name: Build GitHub Pages
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: ./docs
+        destination: ./_site
+    - name: Upload GitHub Pages artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: ./_site
