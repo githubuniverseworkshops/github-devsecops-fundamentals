@@ -9,7 +9,7 @@
   <a href="#learning-objectives">Learning Objectives</a>
 </p>
 
-![end-to-end](./docs/media/e2e-github.png)
+![end-to-end](./docs/media/image1.png)
 
 This self-paced workshop and introduces you to the fundamentals of DevSecOps using GitHub.
 
