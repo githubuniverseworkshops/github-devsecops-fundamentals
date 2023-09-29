@@ -7,6 +7,10 @@ on:
     branches:
       - main
       - lab-2
+  push:
+    branches:
+      - main
+      - lab-2
   workflow_call: {}
 
 # This workflow has read permissions for the contents
