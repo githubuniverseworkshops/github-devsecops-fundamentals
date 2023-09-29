@@ -11,6 +11,8 @@ on:
 # This workflow has read permissions for the contents
 permissions:
   contents: read
+  security-events: write
+  actions: write
 
 # This workflow consists of a single job named "lint-analyze-and-test-pass-01"
 jobs:
@@ -36,18 +38,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # This step runs CodeQL analysis
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: python
+
       # This step reviews the dependencies
       - name: "Dependency Review"
         uses: actions/dependency-review-action@v3
         with:
           config-file: >-
             ./.github/dependency-review-config.yml
-
-      # This step runs CodeQL analysis
-      - name: Run CodeQL analysis
-        uses: ./.github/actions/codeql-analysis
-
-      # # This step runs unit and integration tests
-      # - name: Run unit and integration tests
-      #   run: |
-      #     pytest --cov=ui/src ui/tests
