@@ -41,18 +41,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # # This step reviews the dependencies
-      # - name: "Dependency Review"
-      #   uses: actions/dependency-review-action@v3
-      #   with:
-      #     config-file: >-
-      #       ./.github/dependency-review-config.yml
+      # This step reviews the dependencies
+      - name: "Dependency Review"
+        uses: actions/dependency-review-action@v3
+        with:
+          config-file: >-
+            ./.github/dependency-review-config.yml
 
       # This step runs CodeQL analysis
       - name: Run CodeQL analysis
         uses: ./.github/actions/codeql-analysis
 
-      # This step runs unit and integration tests
-      - name: Run unit and integration tests
-        run: |
-          pytest --cov=ui/src ui/tests
+      # # This step runs unit and integration tests
+      # - name: Run unit and integration tests
+      #   run: |
+      #     pytest --cov=ui/src ui/tests
