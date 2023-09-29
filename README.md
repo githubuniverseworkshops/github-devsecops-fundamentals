@@ -9,7 +9,7 @@
   <a href="#learning-objectives">Learning Objectives</a>
 </p>
 
-![end-to-end](./media/e2e-github.png)
+![end-to-end](./docs/media/e2e-github.png)
 
 This self-paced workshop and introduces you to the fundamentals of DevSecOps using GitHub.
 
@@ -58,6 +58,7 @@ This workshop is intended for the benefit of any audience who has interest in ad
 
 ## :books: Resources
 
+- Reference Workflow Archetype
 - [Create diagrams to convey information through charts and graphs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
 - [Include diagrams in your Markdown files with Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/)
 - [Security hardening for GitHub Actions](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions)

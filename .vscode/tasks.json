@@ -20,7 +20,7 @@
     {
       "label": "Python: Run App",
       "type": "shell",
-      "command": "poetry run flask run --host=0.0.0.0 --port=3000",
+      "command": "poetry run mkdocs serve",
       "options": {
         "cwd": "${workspaceFolder}"
       }
