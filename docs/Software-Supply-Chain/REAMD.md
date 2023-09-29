@@ -1,4 +1,17 @@
 
+# Lab 2
+
+## Steps
+
+1. Create a new `tag`
+2. Create Integration Checks
+  - Install dependencies
+  - Run CodeQL analysis
+  - Run unit and integration tests
+3. Continuous Delivery
+  1. Build GitHub Pages
+  2. Push GitHub Pages to GitHub Packages
+
 ### Step 1: Create new `tag`
 
 GitHub Actions can be used to create a new tag for the next version. The following example shows how to create a new tag for the next version.
@@ -133,28 +146,7 @@ jobs:
           pytest --cov=ui/src ui/tests
 ```
 
-#### Build GitHub Pages
-
-```yaml
-      # This step sets up GitHub Pages
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v3
-
-      # This step builds GitHub Pages
-      - name: Build GitHub Pages
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./docs
-          destination: ./_site
-
-      # This step uploads the GitHub Pages artifact
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./_site
-```
-
-### Complete Example
+#### Complete Example
 
 ```yaml
 # This workflow is named "Preliminary Checks"
@@ -237,4 +229,39 @@ jobs:
       # - name: Deploy to GitHub Pages
       #   id: deployment
       #   uses: actions/deploy-pages@v2
-``````
+```
+
+### Continuous Delivery
+
+The next step is to create a new continuous delivery workflow for the next version. The following example shows how to create a new continuous delivery workflow for the next version.
+
+#### Build GitHub Pages
+
+```yaml
+name: Package Delivery Artifacts
+
+on:
+  push:
+    tags:
+      - "*pre-release*"
+    branches:
+      - main
+      - lab-2
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  package:
+    uses: ./.github/workflows/package.yml
+    with:
+      publish: true
+      package-name: ${{ github.event.repository.owner.login }}
+      package-namespace: ${{ github.event.repository.name }}
+      package-registry: ghcr.io
+    secrets:
+      package-registry-owner: ${{ github.event.repository.owner.login }}
+      package-registry-token: ${{ secrets.GITHUB_TOKEN }}
+```

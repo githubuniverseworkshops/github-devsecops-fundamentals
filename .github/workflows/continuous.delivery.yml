@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - "*pre-release*"
+    branches:
+      - main
+      - lab-2
   workflow_dispatch: {}
 
 permissions:
