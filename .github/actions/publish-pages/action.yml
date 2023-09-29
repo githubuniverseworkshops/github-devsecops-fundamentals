@@ -1,0 +1,16 @@
+name: Publish Pages
+description: Build documentatino and publish it to GitHub Pages
+inputs:
+  config-file:
+    description: The MKDocs config file
+    required: false
+    default: "./mkdocs.yml"
+runs:
+  using: "docker"
+  image: "../../../Dockerfile"
+  args:
+    - gh-deploy
+    - '--config-file'
+    - ${{ inputs.config-file }}
+    - --force
+    - --verbose

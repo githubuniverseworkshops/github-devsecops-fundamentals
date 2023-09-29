@@ -1,4 +1,6 @@
-# Version Control
+# Version Control Lab
+
+_How do I efficiently develop a project and manage code?_
 
 Software development may be approached individually or collaboratively. In
 either case, there is a basic need for accessible, scalable storage for project
@@ -8,7 +10,25 @@ files, and the ability to track the evolution of the project.
 transparency to different points in the history of the software development and
 enabling easy switches across those points.
 
+## Objectives
+
+- [ ] Rapidly onboard into the project
+- [ ] Implement features motivated by relevance in the business value stream
+- [ ] Locally validate work
+- [ ] Collaborate with stakeholders to validate done requirement
+
+## Steps
+
+1. [Prerequisites](./prerequisites.md)
+1. [Setup Development Environment](./setup.md)
+1. [Implement Features](./implement-features.md)
+1. [Run Test](./run-test.md)
+1. [Collaborate with Team to Validate Work](./collaborate.md)
+
 ## Lab Instructions
+
+- Install requirements
+- add /home/codespace/.local/lib/python3.10/site-packages/bin/mkdocs to path
 
 ### GitHub Repositories
 

@@ -100,3 +100,4 @@ nav:
           - Release Management: Release-Automation/release-management.md
           - Environment Management: Release-Automation/environment-management.md
           - Static Code Analysis: Release-Automation/static-code-analysis.md
+  - Tetris: Tetris/index.html
