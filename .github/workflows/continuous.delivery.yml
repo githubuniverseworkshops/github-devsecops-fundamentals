@@ -6,7 +6,9 @@ on:
       - "*pre-release*"
     branches:
       - main
-      - lab-2
+  pull_request:
+    branches:
+      - main
   workflow_dispatch: {}
 
 permissions:
