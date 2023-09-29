@@ -12,6 +12,7 @@
   1. Build GitHub Pages
   2. Push GitHub Pages to GitHub Packages
 3. Create a new pre-release `tag`
+4. Dependabot
 
 ### Step 1: Create Integration Checks
 
@@ -257,4 +258,21 @@ jobs:
           git push origin "$next_version"
         env:
           next_version: ${{ steps.get_next_version.outputs.next_version }}-pre-release
+```
+
+#### Step 4: Dependabot
+
+The next step is to create a new dependabot configuration file for the next version. The following example shows how to create a new dependabot configuration file for the next version.
+
+```yaml
+version: 2
+updates:
+  - package-ecosystem: "python"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+    interval: "weekly"
 ```
