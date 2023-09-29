@@ -1,0 +1,135 @@
+name: Azure Terraform Helper
+
+on:
+  workflow_call:
+    inputs:
+      BACKEND_STORAGE_ACCOUNT_NAME:
+        description: 'Name of the storage account to use for the backend'
+        required: true
+        type: string
+      BACKEND_RESOURCE_GROUP_NAME:
+        description: 'Name of the resource group to use for the backend'
+        required: true
+        type: string
+      BACKEND_LOCATION:
+        description: 'Location of the resource group to use for the backend'
+        required: true
+        type: string
+        default: 'northeurope'
+      ENVIRONMENT:
+        description: 'Name of the environment to create/update/destroy'
+        required: true
+        type: string
+      TERRAFORM_FOLDER:
+        description: 'Name of the folder containing the terraform files'
+        required: true
+        type: string
+        default: 'terraform'
+    secrets:
+      ARM_CLIENT_ID:
+        required: true
+      ARM_SUBSCRIPTION_ID:
+        required: true
+      ARM_TENANT_ID:
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  manage-backend-plan-apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v2
+      - name: Manage Terraform Backend
+        run: |
+          # Search Az Group
+          resource_group_details=$(az group list -o json)
+          resource_group_name_exists=$(echo $resource_group_details | jq -r -c --arg resource_group_name "$resource_group_name" '.[] | select( .name | contains($resource_group_name)) | .name ')
+
+          if [ "$resource_group_name_exists" = "$resource_group_name" ]; then
+              echo "Resource group already exists"
+          else
+              echo "Resource group needs to be created"
+              az group create --name $resource_group_name --location $location
+          fi
+
+          storage_account_details=$(az storage account list --resource-group "$resource_group_name" -o json)
+
+          storageaccount_name_exists=$(echo $storage_account_details | jq -r -c --arg storage_account_name "$storage_account_name" '.[] | select( .name | contains($storage_account_name)) | .name ')
+          storageaccount_name_exists=$(echo $storageaccount_name_exists | sed 's/\"//g')
+
+          if [ "$storageaccount_name_exists" = "$storage_account_name" ]; then
+              echo "Storage account already exists"
+          else
+              echo "Storage account needs to be created"
+              az storage account create --name ${storage_account_name} --resource-group ${resource_group_name} --location ${location} --allow-blob-public-access false
+          fi
+
+          storageaccount_keys=$(az storage account keys list -g ${resource_group_name} -n ${storage_account_name} -o json)
+          storageaccount_key=$(echo $storageaccount_keys | jq -r '.[1].value')
+
+          container_exists=$(az storage container exists --account-name ${storage_account_name} --account-key ${storageaccount_key} --name ${environment}terraformstate | jq '.exists')
+
+          if [ "$container_exists" = "true" ]; then
+              echo "Container already exists"
+          else
+              echo "Container needs to be created"
+              az storage container create --name ${environment}terraformstate --account-name ${storage_account_name} --resource-group ${resource_group_name}
+          fi
+        env:
+          resource_group_name: ${{ inputs.BACKEND_RESOURCE_GROUP_NAME }}
+          location: ${{ inputs.BACKEND_LOCATION }}
+          storage_account_name: ${{ inputs.BACKEND_STORAGE_ACCOUNT_NAME }}
+          environment: ${{ inputs.ENVIRONMENT }}
+      - name: Terraform Init
+        run: |
+          cd ${terraform_folder}
+
+          storageaccount_keys=$(az storage account keys list -g ${resource_group_name} -n ${storage_account_name} -o json)
+          storageaccount_key=$(echo $storageaccount_keys | jq -r '.[1].value')
+
+          terraform init -upgrade -reconfigure -backend-config="storage_account_name=${storage_account_name}" -backend-config="container_name=${environment}terraformstate" -backend-config="access_key=${storageaccount_key}" -backend-config="key=terraform.tfstate"
+        env:
+          terraform_folder: ${{ inputs.TERRAFORM_FOLDER }}
+          resource_group_name: ${{ inputs.BACKEND_RESOURCE_GROUP_NAME }}
+          storage_account_name: ${{ inputs.BACKEND_STORAGE_ACCOUNT_NAME }}
+          environment: ${{ inputs.ENVIRONMENT }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_USE_OIDC: true
+      - name: Terraform Plan
+        run: |
+          cd ${terraform_folder}
+
+          varFile="${environment}.tfvars"
+          terraform plan -var-file=${varFile} -out=tfplan
+        env:
+          terraform_folder: ${{ inputs.TERRAFORM_FOLDER }}
+          environment: ${{ inputs.ENVIRONMENT }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_USE_OIDC: true
+      - name: Terraform Apply
+        run: |
+          cd ${terraform_folder}
+
+          terraform apply tfplan
+        env:
+          terraform_folder: ${{ inputs.TERRAFORM_FOLDER }}
+          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+          ARM_USE_OIDC: true

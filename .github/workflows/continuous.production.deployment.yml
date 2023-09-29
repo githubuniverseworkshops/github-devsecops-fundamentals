@@ -1,0 +1,49 @@
+name: Production Deployment
+
+on:
+  release:
+    types:
+      - released
+  workflow_dispatch:
+
+concurrency:
+  group: production-deplyment
+  cancel-in-progress: false
+
+permissions:
+  packages: none
+  contents: none
+
+  issues: write
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.webapp-url }}
+
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy
+        uses: azure/functions-action@v1
+        with:
+        app-name: ${{ secrets.APP_NAME }}
+        package: .
+        environment:
+        name: ${{ steps.vars.outputs.env }}
+        url: ${{ steps.deploy.outputs.webapp-url }}
+
+      - name: Post-deployment Test
+        run: |
+          curl -f http://${{ steps.deploy.outputs.webapp-url }}/
+          echo "Deployed to ${{ steps.deploy.outputs.webapp-url }}"
+
+      - name: Logout of Azure
+        run: |
+          az logout

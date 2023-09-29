@@ -1,0 +1,52 @@
+name: Preliminary Checks
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_call: {}
+
+permissions:
+  contents: read
+
+jobs:
+  lint-analyze-and-test-pass-01:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install CI Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ui/requirements.ci.txt
+      - name: "Dependency Review"
+        uses: actions/dependency-review-action@v3
+        with:
+          config-file: >-
+            ./.github/dependency-review-config.yml
+      - name: Lint Python source
+        run: |
+          ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
+      - name: Run CodeQL analysis
+        uses: ./.github/actions/codeql-analysis
+      - name: Run unit and integration tests
+        run: |
+          pytest --cov=ui/src ui/tests
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v3
+      - name: Build GitHub Pages
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./_site
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v2
