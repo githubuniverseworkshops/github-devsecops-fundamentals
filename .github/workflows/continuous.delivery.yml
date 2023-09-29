@@ -1,0 +1,23 @@
+name: Package Delivery Artifacts
+
+on:
+  push:
+    tags:
+      - "*pre-release*"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  package:
+    uses: ./.github/workflows/package.yml
+    with:
+      publish: true
+      package-name: ${{ github.event.repository.owner.login }}
+      package-namespace: ${{ github.event.repository.name }}
+      package-registry: ghcr.io
+    secrets:
+      package-registry-owner: ${{ github.event.repository.owner.login }}
+      package-registry-token: ${{ secrets.GITHUB_TOKEN }}
