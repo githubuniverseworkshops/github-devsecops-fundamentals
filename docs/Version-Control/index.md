@@ -1,9 +1,23 @@
-# Version Control
+# Version Control Lab
 
-Software development may be approached individually or collaboratively. In either case, there is a basic need for an accessible storage for software project files, and tracking evolution of the project.
+_How do I efficiently develop a project and manage code?_
 
-`git` helps to track project files and assets that, giving transparency to different points in the history of the software development enabling easy switches across those points. Yet
+Software development may be approached individually or collaboratively. In either case, there is a basic need for an accessible storage for software project files, and tracking evolution of the project. `git` helps to track project files and assets that, giving transparency to different points in the history of the software development enabling easy switches across those points. Yet there remains the goal to make `git` projects accessible on the go and to co-collaborators distributed across locations - **GitHub** as a platform enables every as of the software development lifecycle.
 
+## Objectives
+
+- [ ] Rapidly onboard into the project
+- [ ] Implement features motivated by relevance in the business value stream
+- [ ] Locally validate work
+- [ ] Collaborate with stakeholders to validate done requirement
+
+## Steps
+
+1. [Prerequisites](./prerequisites.md)
+1. [Setup Development Environment](./setup.md)
+1. [Implement Features](./implement-features.md)
+1. [Run Test](./run-test.md)
+1. [Collaborate with Team to Validate Work](./collaborate.md)
 ## Lab Instructions
 
 - Install requirements
