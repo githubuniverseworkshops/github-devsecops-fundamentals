@@ -1,8 +1,0 @@
-👋 Welcome to Codespaces for GitHub DevSecOps Fundamentals! You are on our default image. 
-   - It includes runtimes and tools for Python.
-     You may enable more tools in the container definition file at '.devcontainer/devcontainer.json'.
-   - Want to use a custom image instead? Learn more here: https://aka.ms/configure-codespace
-
-🔍 To explore VS Code to its fullest, search using the Command Palette (Cmd/Ctrl + Shift + P or F1).
-
-📝 Edit away, run your app as usual, and we'll automatically make it available for you to access.
