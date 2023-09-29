@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - "*pre-release*"
-    branches:
-      - main
   pull_request:
     branches:
       - main

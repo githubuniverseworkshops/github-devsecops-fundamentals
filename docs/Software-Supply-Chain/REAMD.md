@@ -3,75 +3,17 @@
 
 ## Steps
 
-1. Create a new `tag`
-2. Create Integration Checks
+1. Create Integration Checks
   - Install dependencies
+  - Lint the source code
   - Run CodeQL analysis
-  - Run unit and integration tests
-3. Continuous Delivery
+  - Run dependency review
+2. Continuous Delivery
   1. Build GitHub Pages
   2. Push GitHub Pages to GitHub Packages
+3. Create a new pre-release `tag`
 
-### Step 1: Create new `tag`
-
-GitHub Actions can be used to create a new tag for the next version. The following example shows how to create a new tag for the next version.
-
-```yaml
-# This is a GitHub Actions workflow for versioning. It is triggered on every push to the main branch.
-# It reads the content of the repository, retrieves the last version number, calculates the next version number, and creates a new git tag for the next version.
-name: Versioning
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  versioning:
-    runs-on: ubuntu-latest
-    steps:
-      # The first step is to checkout the repository.
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      # The next step is to get the last version number.
-      - name: Get last version number
-        id: get_last_version
-        run: |
-          # Retrieve the last git tag, as we will only be processing one delivery line.
-          last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
-          echo "Last version is $last_version"
-          echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
-      # The next step is to calculate the next version number.
-      - name: Get next version number
-        id: get_next_version
-        run: |
-          major=$(echo $last_version | cut -d. -f1)
-          minor=$(echo $last_version | cut -d. -f2)
-          patch=$(echo $last_version | cut -d. -f3)
-
-          next_patch=$((patch+1))
-
-          next_version="$major.$minor.$next_patch"
-
-          echo "Next version is $next_version"
-          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
-        env:
-          last_version: ${{ steps.get_last_version.outputs.last_version }}
-      # The final step is to create a new git tag for the next version.
-
-      - name: Create tag for the next version
-        run: |
-          git config --global user.name "${GITHUB_ACTOR}"
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git tag -a "$next_version" -m "Version $next_version"
-          git push origin "$next_version"
-        env:
-          next_version: ${{ steps.get_next_version.outputs.next_version }}-pre-release
-```
-
-### Step 2: Create Integration Checks
+### Step 1: Create Integration Checks
 
 The next step is to create a new integration check for the next version. The following example shows how to create a new integration check for the next version.
 
@@ -120,15 +62,6 @@ jobs:
           pip install -r requirements.txt
 ```
 
-#### Lint the source code
-
-```yaml
-      # This step lints the Python source code
-      - name: Lint Python source
-        run: |
-          ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
-```
-
 #### Run CodeQL analysis
 
 ```yaml
@@ -136,14 +69,15 @@ jobs:
       - name: Run CodeQL analysis
         uses: ./.github/actions/codeql-analysis
 ```
-
-#### Run unit and integration tests
+#### Run dependency review
 
 ```yaml
-      # This step runs unit and integration tests
-      - name: Run unit and integration tests
-        run: |
-          pytest --cov=ui/src ui/tests
+      # This step reviews the dependencies
+      - name: "Dependency Review"
+        uses: actions/dependency-review-action@v3
+        with:
+          config-file: >-
+            ./.github/dependency-review-config.yml
 ```
 
 #### Complete Example
@@ -264,4 +198,63 @@ jobs:
     secrets:
       package-registry-owner: ${{ github.event.repository.owner.login }}
       package-registry-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### Step 3: Create new `tag`
+
+GitHub Actions can be used to create a new tag for the next version. The following example shows how to create a new tag for the next version.
+
+```yaml
+# This is a GitHub Actions workflow for versioning. It is triggered on every push to the main branch.
+# It reads the content of the repository, retrieves the last version number, calculates the next version number, and creates a new git tag for the next version.
+name: Versioning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      # The first step is to checkout the repository.
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      # The next step is to get the last version number.
+      - name: Get last version number
+        id: get_last_version
+        run: |
+          # Retrieve the last git tag, as we will only be processing one delivery line.
+          last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          echo "Last version is $last_version"
+          echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
+      # The next step is to calculate the next version number.
+      - name: Get next version number
+        id: get_next_version
+        run: |
+          major=$(echo $last_version | cut -d. -f1)
+          minor=$(echo $last_version | cut -d. -f2)
+          patch=$(echo $last_version | cut -d. -f3)
+
+          next_patch=$((patch+1))
+
+          next_version="$major.$minor.$next_patch"
+
+          echo "Next version is $next_version"
+          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
+        env:
+          last_version: ${{ steps.get_last_version.outputs.last_version }}
+      # The final step is to create a new git tag for the next version.
+
+      - name: Create tag for the next version
+        run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git tag -a "$next_version" -m "Version $next_version"
+          git push origin "$next_version"
+        env:
+          next_version: ${{ steps.get_next_version.outputs.next_version }}-pre-release
 ```
