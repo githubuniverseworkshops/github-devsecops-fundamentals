@@ -4,7 +4,11 @@
     "memory": "16gb",
     "storage": "32gb"
   },
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  // "image": "mcr.microsoft.com/devcontainers/universal:2",
   "forwardPorts": [
     8000
   ],
