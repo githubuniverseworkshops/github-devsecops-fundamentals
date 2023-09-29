@@ -3,10 +3,10 @@ fail-on-sseverity: critical
 # You can only include one of these two options: `allow-licenses` and `deny-licenses`
 # ([String]). Only allow these licenses (optional)
 # Possible values: Any `spdx_id` value(s) from https://docs.github.com/en/rest/licenses
-# allow-licenses:
+allow-licenses:
 #   - GPL-3.0
 #   - BSD-3-Clause
-#   - MIT
+  - MIT
 
 # ([String]). Block the pull request on these licenses (optional)
 # Possible values: Any  `spdx_id` value(s) from https://docs.github.com/en/rest/licenses
