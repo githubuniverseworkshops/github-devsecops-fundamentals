@@ -58,9 +58,103 @@ jobs:
           next_version: ${{ steps.get_next_version.outputs.next_version }}-pre-release
 ```
 
-### Step 2: Create new Integration Checks
+### Step 2: Create Integration Checks
 
 The next step is to create a new integration check for the next version. The following example shows how to create a new integration check for the next version.
+
+#### Install dependencies
+
+```yaml
+# This workflow is named "Preliminary Checks"
+name: Preliminary Checks
+
+# This workflow gets triggered on pull requests to the main branch and on workflow calls
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_call: {}
+
+# This workflow has read permissions for the contents
+permissions:
+  contents: read
+
+# This workflow consists of a single job named "lint-analyze-and-test-pass-01"
+jobs:
+  lint-analyze-and-test-pass-01:
+    # This job runs on the latest version of Ubuntu
+    runs-on: ubuntu-latest
+
+    # The steps that this job will execute
+    steps:
+      # This step checks out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # This step sets up Python 3.11
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      # This step installs the Python dependencies needed for CI
+      - name: Install CI Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+```
+
+#### Lint the source code
+
+```yaml
+      # This step lints the Python source code
+      - name: Lint Python source
+        run: |
+          ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
+```
+
+#### Run CodeQL analysis
+
+```yaml
+      # This step runs CodeQL analysis
+      - name: Run CodeQL analysis
+        uses: ./.github/actions/codeql-analysis
+```
+
+#### Run unit and integration tests
+
+```yaml
+      # This step runs unit and integration tests
+      - name: Run unit and integration tests
+        run: |
+          pytest --cov=ui/src ui/tests
+```
+
+#### Build GitHub Pages
+
+```yaml
+      # This step sets up GitHub Pages
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v3
+
+      # This step builds GitHub Pages
+      - name: Build GitHub Pages
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
+
+      # This step uploads the GitHub Pages artifact
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./_site
+```
+
+### Complete Example
 
 ```yaml
 # This workflow is named "Preliminary Checks"

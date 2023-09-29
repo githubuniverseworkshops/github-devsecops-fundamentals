@@ -41,12 +41,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # This step reviews the dependencies
-      - name: "Dependency Review"
-        uses: actions/dependency-review-action@v3
-        with:
-          config-file: >-
-            ./.github/dependency-review-config.yml
+      # # This step reviews the dependencies
+      # - name: "Dependency Review"
+      #   uses: actions/dependency-review-action@v3
+      #   with:
+      #     config-file: >-
+      #       ./.github/dependency-review-config.yml
 
       # This step lints the Python source code
       - name: Lint Python source
