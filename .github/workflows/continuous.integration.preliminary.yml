@@ -4,7 +4,9 @@ name: Preliminary Checks
 # This workflow gets triggered on pull requests to the main branch and on workflow calls
 on:
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - lab-2
   workflow_call: {}
 
 # This workflow has read permissions for the contents
