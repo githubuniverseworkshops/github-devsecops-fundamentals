@@ -52,7 +52,7 @@ This workshop is intended for the benefit of any audience who has interest in ad
 
 - [ ] [1. Value Stream Management](./Value-Stream-Management/index.md)
 - [ ] [2. Version Control](./Version-Control/index.md)
-- [ ] [3. Software Supply Chain](./Software-Supply-Chain/index.md)
+- [ ] [3. Software Supply Chain](./docs/Software-Supply-Chain/index.md)
 - [ ] [4. Release Automation](./Release-Automation/index.md)
 
 ## :books: Resources
