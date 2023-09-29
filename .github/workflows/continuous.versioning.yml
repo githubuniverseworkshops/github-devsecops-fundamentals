@@ -1,21 +1,27 @@
+# This is a GitHub Actions workflow for versioning. It is triggered on every push to the main branch.
+# It reads the content of the repository, retrieves the last version number, calculates the next version number, and creates a new git tag for the next version.
 name: Versioning
 
 on:
   push:
     branches:
       - main
+      - lab-2
 
+# The workflow has read access to the contents of the repository.
 permissions:
-  contents: read
+  contents: read|write
 
 jobs:
   versioning:
     runs-on: ubuntu-latest
     steps:
+      # The first step is to checkout the repository.
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      # The next step is to get the last version number.
       - name: Get last version number
         id: get_last_version
         run: |
@@ -23,6 +29,7 @@ jobs:
           last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
           echo "Last version is $last_version"
           echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
+      # The next step is to calculate the next version number.
       - name: Get next version number
         id: get_next_version
         run: |
@@ -38,10 +45,12 @@ jobs:
           echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
         env:
           last_version: ${{ steps.get_last_version.outputs.last_version }}
+      # The final step is to create a new git tag for the next version.
+
       - name: Create tag for the next version
         run: |
-          git config --local user.email "GitHub Actions"
-          git config --local user.name "github-actions"
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git tag -a "$next_version" -m "Version $next_version"
           git push origin "$next_version"
         env:
