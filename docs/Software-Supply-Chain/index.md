@@ -1,4 +1,4 @@
-# Lab 2: Software Supply Chain
+# Software Supply Chain
 
 ## Introduction
 
