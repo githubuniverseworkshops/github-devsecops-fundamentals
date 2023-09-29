@@ -29,6 +29,10 @@ sudo_if() {
     fi
 }
 
+install_dependencies_in_requirements_txt() {
+    pip3 --disable-pip-version-check --no-cache-dir install --requirement "${REQUIREMENTS_TXT}" && rm -rf "$(dirname "${REQUIREMENTS_TXT}")"
+}
+
 update_package() {
     PYTHON_PATH=$1
     PACKAGE=$2
@@ -36,6 +40,8 @@ update_package() {
     sudo_if "$PYTHON_PATH -m pip uninstall --yes $PACKAGE"
     sudo_if "$PYTHON_PATH -m pip install --upgrade --no-cache-dir $PACKAGE"
 }
+
+install_dependencies_in_requirements_txt
 
 # Temporary: Upgrade python packages due to security vulnerabilities
 # They are installed by the base image (python) which does not have the patch.
