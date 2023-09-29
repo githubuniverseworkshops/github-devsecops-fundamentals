@@ -1,77 +1,40 @@
+# Lab 2: Software Supply Chain
 
-# Lab 2
+## Introduction
 
-## Steps
+The goal of this lab is to create a software supply chain for the `Tetris` app. The software supply chain will consist of the following steps:
 
-1. Create a new `tag`
-2. Create Integration Checks
-  - Install dependencies
-  - Run CodeQL analysis
-  - Run unit and integration tests
-3. Continuous Delivery
-  1. Build GitHub Pages
-  2. Push GitHub Pages to GitHub Packages
+1. Create Integration Checks
+2. Continuous Delivery
+3. Pre-Release
+4. Compliance
 
-### Step 1: Create new `tag`
+## Prerequisites
 
-GitHub Actions can be used to create a new tag for the next version. The following example shows how to create a new tag for the next version.
+The same prerequisites as [Lab 1](../Lab-1/README.md) apply.
 
-```yaml
-# This is a GitHub Actions workflow for versioning. It is triggered on every push to the main branch.
-# It reads the content of the repository, retrieves the last version number, calculates the next version number, and creates a new git tag for the next version.
-name: Versioning
+## Objectives
 
-on:
-  push:
-    branches:
-      - main
+The objectives of this lab are to:
 
-jobs:
-  versioning:
-    runs-on: ubuntu-latest
-    steps:
-      # The first step is to checkout the repository.
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      # The next step is to get the last version number.
-      - name: Get last version number
-        id: get_last_version
-        run: |
-          # Retrieve the last git tag, as we will only be processing one delivery line.
-          last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
-          echo "Last version is $last_version"
-          echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
-      # The next step is to calculate the next version number.
-      - name: Get next version number
-        id: get_next_version
-        run: |
-          major=$(echo $last_version | cut -d. -f1)
-          minor=$(echo $last_version | cut -d. -f2)
-          patch=$(echo $last_version | cut -d. -f3)
+1. Create Integration Checks for the `Tetris` app using GitHub Actions
+2. Create a Continuous Delivery workflow for the `Tetris` app using GitHub Actions
+3. Create a new pre-release `tag` for the `Tetris` app using GitHub Actions
+4. Create a new dependabot configuration file for the `Tetris` app using GitHub Actions
 
-          next_patch=$((patch+1))
+## Lab outcomes
 
-          next_version="$major.$minor.$next_patch"
+The outcomes of this lab are:
 
-          echo "Next version is $next_version"
-          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
-        env:
-          last_version: ${{ steps.get_last_version.outputs.last_version }}
-      # The final step is to create a new git tag for the next version.
+1. Get familiar with GitHub Actions
+2. Get familiar with GitHub Packages
+3. Get familiar with GitHub Pages
+4. Get familiar with Dependabot
+5. Get familiar with the GitHub CodeQL analysis
+6. Get familiar with the GitHub Dependency Review Action
+7. Get familiar with the GitHub Dependabot
 
-      - name: Create tag for the next version
-        run: |
-          git config --global user.name "${GITHUB_ACTOR}"
-          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git tag -a "$next_version" -m "Version $next_version"
-          git push origin "$next_version"
-        env:
-          next_version: ${{ steps.get_next_version.outputs.next_version }}-pre-release
-```
-
-### Step 2: Create Integration Checks
+### Step 1: Create Integration Checks
 
 The next step is to create a new integration check for the next version. The following example shows how to create a new integration check for the next version.
 
@@ -231,7 +194,7 @@ jobs:
       #   uses: actions/deploy-pages@v2
 ```
 
-### Continuous Delivery
+### Step 2: Continuous Delivery
 
 The next step is to create a new continuous delivery workflow for the next version. The following example shows how to create a new continuous delivery workflow for the next version.
 
@@ -264,4 +227,80 @@ jobs:
     secrets:
       package-registry-owner: ${{ github.event.repository.owner.login }}
       package-registry-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### Step 1: Create new `tag`
+
+GitHub Actions can be used to create a new tag for the next version. The following example shows how to create a new tag for the next version.
+
+```yaml
+# This is a GitHub Actions workflow for versioning. It is triggered on every push to the main branch.
+# It reads the content of the repository, retrieves the last version number, calculates the next version number, and creates a new git tag for the next version.
+name: Versioning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      # The first step is to checkout the repository.
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      # The next step is to get the last version number.
+      - name: Get last version number
+        id: get_last_version
+        run: |
+          # Retrieve the last git tag, as we will only be processing one delivery line.
+          last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          echo "Last version is $last_version"
+          echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
+      # The next step is to calculate the next version number.
+      - name: Get next version number
+        id: get_next_version
+        run: |
+          major=$(echo $last_version | cut -d. -f1)
+          minor=$(echo $last_version | cut -d. -f2)
+          patch=$(echo $last_version | cut -d. -f3)
+
+          next_patch=$((patch+1))
+
+          next_version="$major.$minor.$next_patch"
+
+          echo "Next version is $next_version"
+          echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
+        env:
+          last_version: ${{ steps.get_last_version.outputs.last_version }}
+      # The final step is to create a new git tag for the next version.
+
+      - name: Create tag for the next version
+        run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git tag -a "$next_version" -m "Version $next_version"
+          git push origin "$next_version"
+        env:
+          next_version: ${{ steps.get_next_version.outputs.next_version }}-pre-release
+```
+
+### Step 4: Dependabot
+
+The next step is to create a new dependabot configuration file for the next version. The following example shows how to create a new dependabot configuration file for the next version.
+
+```yaml
+version: 2
+updates:
+  - package-ecosystem: "python"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+    interval: "weekly"
 ```
