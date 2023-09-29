@@ -8,10 +8,6 @@ on:
       - main
       - lab-2
 
-# The workflow has read access to the contents of the repository.
-permissions:
-  contents: read|write
-
 jobs:
   versioning:
     runs-on: ubuntu-latest
