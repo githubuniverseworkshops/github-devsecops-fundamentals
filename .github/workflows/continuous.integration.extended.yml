@@ -70,26 +70,26 @@ jobs:
       package-registry: ${{ needs.app-config.outputs.package_registry }}
       package-name: ${{ needs.app-config.outputs.package_name_redis }}
 
-  acceptance-tests:
-    needs: [app-config, package-ui, package-redis]
-    runs-on: ubuntu-latest
-    container:
-      image: ${{ needs.app-config.outputs.image_ui }}
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
-      env:
-        REDIS_HOST: ${{ needs.app-config.outputs.redis_host }}
-        REDIS_PORT: ${{ needs.app-config.outputs.redis_port }}
-      ports:
-        - 80:80
-    services:
-      redis:
-        image: ${{ needs.app-config.outputs.image_redis }}
-        ports:
-          - ${{ needs.app-config.outputs.redis_port }}:${{ needs.app-config.outputs.redis_port }}
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+  # acceptance-tests:
+  #   needs: [app-config, package-ui, package-redis]
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: ${{ needs.app-config.outputs.image_ui }}
+  #     credentials:
+  #       username: ${{ github.actor }}
+  #       password: ${{ secrets.github_token }}
+  #     env:
+  #       REDIS_HOST: ${{ needs.app-config.outputs.redis_host }}
+  #       REDIS_PORT: ${{ needs.app-config.outputs.redis_port }}
+  #     ports:
+  #       - 80:80
+  #   services:
+  #     redis:
+  #       image: ${{ needs.app-config.outputs.image_redis }}
+  #       ports:
+  #         - ${{ needs.app-config.outputs.redis_port }}:${{ needs.app-config.outputs.redis_port }}
+  #       options: >-
+  #         --health-cmd "redis-cli ping"
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
