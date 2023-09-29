@@ -1,0 +1,365 @@
+name: Build and Scan Container Image
+description: Build and scan a container image
+
+inputs:
+  # Local action inputs
+
+  workflow:
+    description: The type of workflow this action is run in (CI or CD)
+    required: true
+
+  # docker/login-action inputs
+
+  registry:
+    description: Server address of Docker registry
+    required: false
+    default: ghcr.io
+  password:
+    description: Password to authenticate to the container registry
+    required: false
+    default: ${{ github.token }}
+  username:
+    description: Username to authenticate to the container registry
+    required: false
+    default: ${{ github.actor }}
+
+  # docker/build-push-action inputs
+
+  add-hosts:
+    description: List of a customs host-to-IP mapping (e.g., docker:10.180.0.1)
+    required: false
+  allow:
+    description:
+      List of extra privileged entitlement (e.g.,
+      network.host,security.insecure)
+    required: false
+  attests:
+    description:
+      List of attestation parameters (e.g., type=sbom,generator=image)
+    required: false
+  build-args:
+    description: List of build-time variables
+    required: false
+  builder:
+    description: Builder instance
+    required: false
+  cache-from:
+    description:
+      List of external cache sources for buildx (e.g., user/app:cache,
+      type=local,src=path/to/dir)
+    required: false
+  cache-to:
+    description:
+      List of cache export destinations for buildx (e.g., user/app:cache,
+      type=local,dest=path/to/dir)
+    required: false
+  cgroup-parent:
+    description: Optional parent cgroup for the container used in the build
+    required: false
+  context:
+    description:
+      Build's context is the set of files located in the specified PATH or URL
+    required: false
+  file:
+    description: Path to the Dockerfile
+    required: false
+  github-token:
+    description:
+      GitHub Token used to authenticate against a repository for Git context
+    default: ${{ github.token }}
+    required: false
+  image-name:
+    description: Name of the image to build and publish
+    required: true
+    default: ${{ github.repository }}
+  labels:
+    description: List of metadata for an image
+    required: false
+  load:
+    description: Load is a shorthand for --output=type=docker
+    required: false
+    default: 'false'
+  network:
+    description: Set the networking mode for the RUN instructions during build
+    required: false
+  no-cache:
+    description: Do not use cache when building the image
+    required: false
+    default: 'false'
+  no-cache-filters:
+    description: Do not cache specified stages
+    required: false
+  outputs:
+    description: 'List of output destinations (format: type=local,dest=path)'
+    required: false
+  platforms:
+    description: List of target platforms for build
+    required: false
+  provenance:
+    description:
+      'Generate provenance attestation for the build (shorthand for
+      --attest=type=provenance).'
+    required: false
+  pull:
+    description: Always attempt to pull all referenced images
+    required: false
+    default: 'false'
+  sbom:
+    description:
+      Generate SBOM attestation for the build (shorthand for --attest=type=sbom)
+    required: false
+  secrets:
+    description:
+      List of secrets to expose to the build (e.g., key=string,
+      GIT_AUTH_TOKEN=mytoken)
+    required: false
+  secret-files:
+    description:
+      List of secret files to expose to the build (e.g., key=filename,
+      MY_SECRET=./secret.txt)
+    required: false
+  shm-size:
+    description: Size of /dev/shm (e.g., 2g)
+    required: false
+  ssh:
+    description: List of SSH agent socket or keys to expose to the build
+    required: false
+  target:
+    description: Sets the target stage to build
+    required: false
+  ulimit:
+    description: Ulimit options (e.g., nofile=1024:1024)
+    required: false
+
+  # anchore/scan-action inputs
+
+  add-cpes-if-none:
+    description:
+      'Specify whether to autogenerate missing CPEs. Default is false.'
+    required: false
+  fail-build:
+    description:
+      'Set to false to avoid failing based on severity-cutoff. Default is to
+      fail when severity-cutoff is reached (or surpassed).'
+    required: false
+    default: 'true'
+  only-fixed:
+    description:
+      'Specify whether to only report vulnerabilities that have a fix available.
+      Default is true.'
+    required: false
+    default: 'true'
+  severity-cutoff:
+    description:
+      'Optionally specify the minimum vulnerability severity to trigger an
+      "error" level ACS result.  Valid choices are "negligible", "low",
+      "medium", "high" and "critical".  Any vulnerability with a severity less
+      than this value will lead to a "warning" result.  Default is "medium".'
+    required: false
+    default: high
+
+  # github/codeql-action/upload-sarif inputs
+
+  category:
+    description: String used by Code Scanning for matching the analyses
+    required: false
+  sarif-file:
+    description: Path to the SARIF file to upload
+    required: false
+    default: '../results'
+  wait-for-processing:
+    description:
+      If true, the Action will wait for the uploaded SARIF to be processed
+      before completing.
+    required: true
+    default: 'true'
+
+runs:
+  using: composite
+  steps:
+    ##### CI Workflows
+    # Get the short SHA for the image tag
+    # Get metadata to apply to image (labels CI images with `<branch>-<sha>`)
+
+    - if: ${{ inputs.workflow == 'CI' || inputs.workflow == 'ci' }}
+      name: Get Short SHA
+      id: short
+      shell: bash
+      run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+    - if: ${{ inputs.workflow == 'CI' || inputs.workflow == 'ci' }}
+      name: Extract Metadata
+      id: ci-meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ inputs.registry }}/${{ inputs.image-name }}
+        tags: |
+          type=ref,event=branch
+          type=raw,value=${{ github.ref_name }}-${{ steps.short.outputs.sha }}
+
+    ##### CD Workflows
+    # Get the version information
+    # Set the version tags
+    # Get metadata to apply to image
+
+    # Get the version and update the tags to use in the release
+    - if: ${{ inputs.workflow == 'CD' || inputs.workflow == 'cd' }}
+      name: Tag Commit
+      id: tag
+      uses: issue-ops/semver@v0.1.0
+      with:
+        manifest-path: pyproject.toml
+        workspace: ${{ github.workspace }}
+        ref: main
+
+    - if: ${{ inputs.workflow == 'CD' || inputs.workflow == 'cd' }}
+      name: Get Version
+      id: get
+      uses: usps/actions/get-version@v1
+      with:
+        workspace: ${{ github.workspace }}
+
+    - if: ${{ inputs.workflow == 'CD' || inputs.workflow == 'cd' }}
+      name: Set Version Tags
+      id: set
+      uses: usps/actions/tag-version@v1
+      with:
+        version: ${{ steps.get.outputs.version }}
+
+    # Label the image with the version information (e.g. vX.Y.Z, vX.Y, vX)
+    - if: ${{ inputs.workflow == 'CD' || inputs.workflow == 'cd' }}
+      name: Extract Metadata
+      id: cd-meta
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ inputs.registry }}/${{ inputs.image-name }}
+        tags: |
+          type=raw,value=latest
+          type=raw,value=v${{ steps.tag.outputs.version }}
+          type=raw,value=v${{ steps.tag.outputs.major-minor-patch }}
+          type=raw,value=v${{ steps.tag.outputs.major-minor }}
+          type=raw,value=v${{ steps.tag.outputs.major }}
+
+    ##### Build, Scan, and Publish
+    # Authenticate to the container registry
+    # Build the container image
+    # Scan the container image
+    # Upload the SARIF report
+    # Publish the container image
+
+    - name: Authenticate to Container Registry
+      id: login
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ inputs.registry }}
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+
+    - name: Build Container Image
+      id: build
+      uses: docker/build-push-action@v4
+      env:
+        LABELS: |
+          ${{ steps.ci-meta.outputs.labels || steps.cd-meta.outputs.labels }}
+        TAGS: |
+          ${{ steps.ci-meta.outputs.tags || steps.cd-meta.outputs.tags }}
+      with:
+        add-hosts: ${{ inputs.add-hosts }}
+        allow: ${{ inputs.allow }}
+        attests: ${{ inputs.attests }}
+        build-args: ${{ inputs.build-args }}
+        builder: ${{ inputs.builder }}
+        cache-from: ${{ inputs.cache-from }}
+        cache-to: ${{ inputs.cache-to }}
+        cgroup-parent: ${{ inputs.cgroup-parent }}
+        context: ${{ inputs.context }}
+        file: ${{ inputs.file }}
+        github-token: ${{ inputs.github-token }}
+        labels: ${{ env.LABELS }}
+        load: ${{ inputs.load }}
+        network: ${{ inputs.network }}
+        no-cache: ${{ inputs.no-cache }}
+        no-cache-filters: ${{ inputs.no-cache-filters }}
+        outputs: ${{ inputs.outputs }}
+        platforms: ${{ inputs.platforms }}
+        provenance: ${{ inputs.provenance }}
+        pull: ${{ inputs.pull }}
+        push: false
+        sbom: ${{ inputs.sbom }}
+        secrets: ${{ inputs.secrets }}
+        secret-files: ${{ inputs.secret-files }}
+        shm-size: ${{ inputs.shm-size }}
+        ssh: ${{ inputs.ssh }}
+        target: ${{ inputs.target }}
+        tags: ${{ env.TAGS }}
+        ulimit: ${{ inputs.ulimit }}
+
+    - name: Scan Container Image
+      id: scan
+      uses: anchore/scan-action@v3
+      env:
+        IMAGE: |
+          ${{ steps.ci-meta.outcome != 'skipped' && fromJson(steps.ci-meta.outputs.json).tags[0] || fromJson(steps.cd-meta.outputs.json).tags[0] }}
+      with:
+        add-cpes-if-none: ${{ inputs.add-cpes-if-none }}
+        fail-build: ${{ inputs.fail-build }}
+        image: ${{ env.IMAGE }}
+        only-fixed: ${{ inputs.only-fixed }}
+        severity-cutoff: ${{ inputs.severity-cutoff }}
+
+    # Always upload the report, even if the scan failed
+    # But not if the build is cancelled
+    - if: ${{ success() || failure() }}
+      name: Upload SARIF Report
+      id: upload
+      uses: github/codeql-action/upload-sarif@v2
+      env:
+        REF: |
+          ${{ !startsWith(github.ref, 'refs/') && format('refs/heads/{0}', github.ref) || github.ref }}
+        SHA: |
+          ${{ github.sha }}
+      with:
+        category: ${{ inputs.category }}
+        sarif_file: ${{ steps.scan.outputs.sarif }}
+        wait-for-processing: ${{ inputs.wait-for-processing }}
+        ref: ${{ env.REF }}
+        sha: ${{ env.SHA }}
+
+    - name: Publish Container Image
+      id: publish
+      uses: docker/build-push-action@v4
+      env:
+        LABELS: |
+          ${{ steps.ci-meta.outputs.labels || steps.cd-meta.outputs.labels }}
+        TAGS: |
+          ${{ steps.ci-meta.outputs.tags || steps.cd-meta.outputs.tags }}
+      with:
+        add-hosts: ${{ inputs.add-hosts }}
+        allow: ${{ inputs.allow }}
+        attests: ${{ inputs.attests }}
+        build-args: ${{ inputs.build-args }}
+        builder: ${{ inputs.builder }}
+        cache-from: ${{ inputs.cache-from }}
+        cache-to: ${{ inputs.cache-to }}
+        cgroup-parent: ${{ inputs.cgroup-parent }}
+        context: ${{ inputs.context }}
+        file: ${{ inputs.file }}
+        github-token: ${{ inputs.github-token }}
+        labels: ${{ env.LABELS }}
+        load: ${{ inputs.load }}
+        network: ${{ inputs.network }}
+        no-cache: ${{ inputs.no-cache }}
+        no-cache-filters: ${{ inputs.no-cache-filters }}
+        outputs: ${{ inputs.outputs }}
+        platforms: ${{ inputs.platforms }}
+        provenance: ${{ inputs.provenance }}
+        pull: ${{ inputs.pull }}
+        push: true
+        sbom: ${{ inputs.sbom }}
+        secrets: ${{ inputs.secrets }}
+        secret-files: ${{ inputs.secret-files }}
+        shm-size: ${{ inputs.shm-size }}
+        ssh: ${{ inputs.ssh }}
+        target: ${{ inputs.target }}
+        tags: ${{ env.TAGS }}
+        ulimit: ${{ inputs.ulimit }}
