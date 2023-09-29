@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - main
-      - lab-2
+      # - lab-2
 
 jobs:
   versioning:
