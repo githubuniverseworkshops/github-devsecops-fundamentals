@@ -4,10 +4,4 @@
 .jekyll*
 .sass-cache/
 _site/
-node_modules/
-*.min.js
-*.min.js.map
 *.scss
-dist/
-coverage/
-fixtures/
