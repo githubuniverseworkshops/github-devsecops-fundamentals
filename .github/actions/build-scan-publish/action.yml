@@ -212,20 +212,6 @@ runs:
         workspace: ${{ github.workspace }}
         ref: main
 
-    - if: ${{ inputs.workflow == 'CD' || inputs.workflow == 'cd' }}
-      name: Get Version
-      id: get
-      uses: usps/actions/get-version@v1
-      with:
-        workspace: ${{ github.workspace }}
-
-    - if: ${{ inputs.workflow == 'CD' || inputs.workflow == 'cd' }}
-      name: Set Version Tags
-      id: set
-      uses: usps/actions/tag-version@v1
-      with:
-        version: ${{ steps.get.outputs.version }}
-
     # Label the image with the version information (e.g. vX.Y.Z, vX.Y, vX)
     - if: ${{ inputs.workflow == 'CD' || inputs.workflow == 'cd' }}
       name: Extract Metadata
