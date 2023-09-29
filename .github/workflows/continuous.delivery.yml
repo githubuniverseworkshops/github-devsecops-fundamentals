@@ -21,6 +21,9 @@ jobs:
       uses: actions/checkout@v2
     - name: Setup GitHub Pages
       uses: actions/configure-pages@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        enablement: ture
     - name: Build GitHub Pages
       uses: actions/jekyll-build-pages@v1
       with:
