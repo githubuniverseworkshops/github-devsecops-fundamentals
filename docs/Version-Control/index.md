@@ -6,6 +6,8 @@ Software development may be approached individually or collaboratively. In eithe
 
 ## Lab Instructions
 
+- Install requirements
+- add /home/codespace/.local/lib/python3.10/site-packages/bin/mkdocs to path
 ### GitHub Repositories
 
 1. Fork the repository
