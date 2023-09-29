@@ -4,9 +4,8 @@ site_author: Igwe Kalu <igwejk@github.com>
 site_description: GitHub Universe 2023 | Workshop
 
 remote_name: origin
-remote_branch: gh-pages
+remote_branch: github-pages
 
-edit_uri: edit/main/docs/
 repo_url: https://github.com/githubuniverseworkshops/github-devsecops-fundamentals
 repo_name: GitHub
 
@@ -95,4 +94,9 @@ nav:
       - Securing the Software Supply Chain: Software-Supply-Chain/index.md
       - Release Automation:
           - Home: Release-Automation/index.md
-          - Workflow: Release-Automation/workflow.md
+          - Prerequisites: Release-Automation/prerequisites.md
+          - Setup: Release-Automation/setup.md
+          - Continuous Deployment: Release-Automation/continuous-deployment.md
+          - Release Management: Release-Automation/release-management.md
+          - Environment Management: Release-Automation/environment-management.md
+          - Static Code Analysis: Release-Automation/static-code-analysis.md
