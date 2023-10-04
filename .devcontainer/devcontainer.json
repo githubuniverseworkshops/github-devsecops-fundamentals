@@ -5,7 +5,7 @@
     "storage": "32gb"
   },
   "build": {
-    "dockerfile": "Dockerfile",
+    "dockerfile": "./Dockerfile",
     "context": "."
   },
   // "image": "mcr.microsoft.com/devcontainers/universal:2",
@@ -28,7 +28,8 @@
         "ms-python.mypy-type-checker",
         "ms-python.pylint",
         "ms-python.vscode-pylance",
-        "ms-vsliveshare.vsliveshare"
+        "ms-vsliveshare.vsliveshare",
+        "ms-playwright.playwright"
       ]
     }
   }
