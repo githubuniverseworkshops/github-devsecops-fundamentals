@@ -2,9 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("Tetris game", async ({ page }) => {
   const SPACE_BAR = "";
-  const TETRIS_APP_PATH =
-    "pages/githubuniverseworkshops/github-devsecops-fundamentals";
-  const { TETRIS_APP_HOST, TETRIS_APP_PORT } = process.env;
+  const { TETRIS_APP_HOST, TETRIS_APP_PORT, TETRIS_APP_PATH } = process.env;
 
   await page.goto(
     `http://${TETRIS_APP_HOST}:${TETRIS_APP_PORT}/${TETRIS_APP_PATH}`
