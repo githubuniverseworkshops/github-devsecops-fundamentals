@@ -58,8 +58,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        # FIXEME: timeout
-        continue-on-error: true
         run: npx playwright test
       - uses: actions/upload-artifact@v3
         if: always()
