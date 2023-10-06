@@ -1,0 +1,57 @@
+const {
+  update,
+  handle,
+  move,
+  setVisualScore,
+  drop,
+  unoccupied,
+  setCurrentPiece,
+  setNextPiece,
+  reset,
+  play,
+  lose,
+  setScore,
+  addScore,
+  clearScore,
+  clearRows,
+  setRows,
+  addRows,
+  getBlock,
+  setBlock,
+  clearBlocks,
+  clearActions,
+} = require('/Users/mouismail/GitHub/mouismail/universe/github-devsecops-fundamentals/docs/Tetris/index.html');
+
+describe('Tetris Game', () => {
+  describe('update function', () => {
+    test('should update the game state', () => {
+      // Setup
+      play();
+      setScore(10);
+      // Exercise
+      update(1);
+      // Verify
+      expect(vscore).toBe(11);
+    });
+  });
+
+  // Add more tests for other functions here
+});const { resize, keydown, occupied, unoccupied, randomPiece } = require('../docs/Tetris/index.html');
+
+describe('Tetris functions', () => {
+  test('resize function', () => {
+    const canvas = { clientWidth: 200, clientHeight: 400 };
+    const ucanvas = { clientWidth: 100, clientHeight: 200 };
+    const nx = 10;
+    const ny = 20;
+    resize(canvas, ucanvas, nx, ny);
+    expect(canvas.width).toBe(200);
+    expect(canvas.height).toBe(400);
+    expect(ucanvas.width).toBe(100);
+    expect(ucanvas.height).toBe(200);
+    expect(dx).toBe(20);
+    expect(dy).toBe(20);
+  });
+
+  // Add similar tests for keydown, occupied, unoccupied, and randomPiece functions
+});
