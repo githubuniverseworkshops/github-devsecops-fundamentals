@@ -36,7 +36,7 @@ jobs:
         run: npm ci
       - name: Test Site Build
         run: |
-          mkdocs build --clean --verbose --site-dir '${{ env.SITE_DIR }}'
+          mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run UI Test

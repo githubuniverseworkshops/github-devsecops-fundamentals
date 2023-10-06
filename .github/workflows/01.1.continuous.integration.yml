@@ -38,6 +38,9 @@ jobs:
       - name: Lint Python source
         run: |
           ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
+      - name: Test Site Build
+        run: |
+          mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
   security-checks:
     runs-on: ubuntu-latest
     steps:
