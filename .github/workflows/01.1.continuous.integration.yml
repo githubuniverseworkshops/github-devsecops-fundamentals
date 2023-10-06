@@ -40,9 +40,29 @@ jobs:
       - name: Lint Python source
         run: |
           ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
-  security-checks:
+  UI-tests:
     runs-on: ubuntu-latest
     needs: run-checks
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+  security-checks:
+    runs-on: ubuntu-latest
+    needs: UI-tests
     steps:
       - uses: actions/checkout@v3
       - name: Dependency Review
@@ -57,21 +77,3 @@ jobs:
           setup-python-dependencies: "false"
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
-  test:
-    runs-on: ubuntu-latest
-    needs: run-checks
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.ci.txt
-      - name: Run unit and integration tests
-        run: |
-          npm install -D @playwright/test
-          npm test
-      - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v4
-        if: success() || failure() # always run even if the previous step fails
-        with:
-          report_paths: '**/build/test-results/test/TEST-*.xml'
