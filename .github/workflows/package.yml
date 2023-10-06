@@ -1,4 +1,4 @@
-name: Package Delivery Artifacts
+name: Package Container Image
 
 on:
   pull_request:
