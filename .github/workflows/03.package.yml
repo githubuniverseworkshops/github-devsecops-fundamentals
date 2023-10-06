@@ -5,86 +5,50 @@ on:
     branches:
       - main
   workflow_dispatch: {}
-  workflow_call:
-    inputs:
-      publish:
-        description: >-
-          Whether to publish the container image to the container registry.
-          Defaults to `true`.
-        required: false
-        default: true
-        type: boolean
-      package-namespace:
-        description: >-
-          Package namespace. Defaults to the owner of the repository.
-        required: false
-        default: ${{ github.event.repository.owner.login }}
-        type: string
-      package-name:
-        description: Package name. Defaults to the name of the repository.
-        required: false
-        default: ${{ github.event.repository.name }}
-        type: string
-      package-registry:
-        description: >-
-          The container registry to publish the container image to.
-          Defaults to `ghcr.io`.
-        required: false
-        default: ghcr.io
-        type: string
-
-    secrets:
-      package-registry-owner:
-        required: false
-        description: >-
-          The owner of the container registry.Defaults to `github.actor`.
-      package-registry-token:
-        required: false
-        description: >-
-          The password used to authenticate with the container registry.
-          Defaults to the value of the `GITHUB_TOKEN` secret.
 
 permissions:
   contents: read
   packages: write
 
 jobs:
-  package:
+  build-scan-image:
+    name: Build and Scan Container
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
+    - uses: actions/checkout@v1
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@e81a89b1732b9c48d79cd809d8d81d79c4647a18
+    - name: Build docker image
+      run: |
+        docker build -t ${{ github.event.organization }}/${{ github.event.repository }}:${{ github.sha }} ./azure-vote
+    - name: Scan container image
+      uses: Azure/container-scan@v0
+      with:
+        image-name: ${{ github.event.organization }}/${{ github.event.repository }}:${{ github.sha }}
+        severity-threshold: CRITICAL
+        run-quality-checks: false
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: build-scan-image
+    steps:
+    - uses: actions/checkout@main
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@4b4e9c3e2d4531116a6f8ba8e71fc6e2cb6e6c8c
+    # Get lowercase repo name
+    - name: downcase REPO
+      run: |
+        echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
-      - name: Generate image tag
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: ${{ inputs.package-namespace }}/${{ inputs.package-name }}
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=raw,value=latest,enable={{is_default_branch}}
+    # Connect to GitHub Container Registry (ghcr)
+    - name: Login to GitHub Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-        with:
-          registry: ${{ inputs.package-registry }}
-          username: ${{ secrets.package-registry-owner }}
-          password: ${{ secrets.package-registry-token }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
-        with:
-          platforms: linux/amd64,darwin/amd64,linux/arm64
-          context: ${{ github.workspace }}
-          labels: ${{ steps.meta.outputs.labels }}
-          push: ${{ inputs.publish }}
-          tags: ${{ steps.meta.outputs.tags }}
+    - name: Build and push to GHCR
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        platforms: linux/amd64,darwin/amd64,linux/arm64
+        context: ${{ github.workspace }}
+        tags: ghcr.io/${{ github.event.organization }}/${{ github.event.repository }}:${{ github.sha }}
