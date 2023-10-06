@@ -7,6 +7,7 @@ fail-on-severity: moderate
 allow-licenses:
   - MIT
   - GPL-3.0
+  - BSD-2-Clause
   - BSD-3-Clause
 # ([String]). Block the pull request on these licenses (optional)
 # Possible values: Any  `spdx_id` value(s) from https://docs.github.com/en/rest/licenses
