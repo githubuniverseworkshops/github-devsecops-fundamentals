@@ -1,4 +1,4 @@
-# Software Supply Chain
+# Software Supply Chain Workshop
 
 ## Introduction
 
@@ -17,242 +17,190 @@ The same prerequisites as [Lab 1](../Lab-1/README.md) apply.
 
 The objectives of this lab are to:
 
-1. Create Integration Checks for the `Tetris` app using GitHub Actions
-2. Create a Continuous Delivery workflow for the `Tetris` app using GitHub Actions
-3. Create a new pre-release `tag` for the `Tetris` app using GitHub Actions
-4. Create a new dependabot configuration file for the `Tetris` app using GitHub Actions
+1. Create Integration Checks for the `Tetris` app using GitHub Actions.
+2. Create a Continuous Delivery workflow for the `Tetris` app using GitHub Actions.
+3. Create a new pre-release `tag` for the `Tetris` app using GitHub Actions.
+4. Create a new Dependabot configuration file for the `Tetris` app using GitHub Actions.
 
-## Lab outcomes
+## Lab Outcomes
 
 The outcomes of this lab are:
 
-1. Get familiar with GitHub Actions
-2. Get familiar with GitHub Packages
-3. Get familiar with GitHub Pages
-4. Get familiar with Dependabot
-5. Get familiar with the GitHub CodeQL analysis
-6. Get familiar with the GitHub Dependency Review Action
-7. Get familiar with the GitHub Dependabot
+1. Get familiar with GitHub Actions.
+2. Get familiar with GitHub Packages.
+5. Get familiar with the GitHub CodeQL analysis.
+6. Get familiar with the GitHub Dependency Review Action.
+7. Get familiar with the GitHub Dependabot.
 
-### Step 1: Create Integration Checks
+## Step 1.1: Create Integration Checks
 
-The next step is to create a new integration check for the next version. The following example shows how to create a new integration check for the next version.
+The first step is to create a new integration check for the next version. Follow these steps:
 
-#### Install dependencies
+1. Navigate to `.github/workflows` and create a new file with the name `01.1.continuous.integration.yml`.
+2. Copy and paste the provided YAML code for running quality checks, UI tests, and security checks.
+3. Save the file and commit it to your repository.
 
+### Complete Example 
 ```yaml
-# This workflow is named "Preliminary Checks"
-name: Preliminary Checks
+name: Run Checks
 
-# This workflow gets triggered on pull requests to the main branch and on workflow calls
 on:
   pull_request:
     branches:
       - main
+  workflow_call: {}
+
+permissions:
+  actions: write
+  contents: read
+  security-events: write
+  checks: write
+
+env:
+  CI: 1
+  SITE_DIR: _site
+  TETRIS_APP_HOST: "127.0.0.1"
+  TETRIS_APP_PORT: "8080"
+  TETRIS_APP_PATH: "pages/githubuniverseworkshops/github-devsecops-fundamentals"
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.ci.txt
+      - name: Install NodeJS dependencies
+        run: npm ci
+      - name: Lint Python source
+        run: |
+          ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
+
+  ui-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.ci.txt
+      - name: Install node dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+```
+
+## Step 1.2: Continuous Delivery
+
+In this step, you will create a new continuous delivery workflow for the next version. Follow these steps:
+
+1. Create a new file named `01.2.continuous.integration.yml` in the `.github/workflows` directory.
+2. Copy and paste the provided YAML code for running acceptance tests.
+3. Save the file and commit it to your repository.
+
+### Complete Example
+```yaml
+name: Run Acceptance Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_call: {}
+
+permissions:
+  actions: write
+  contents: read
+  security-events: write
+
+env:
+  CI: 1
+  SITE_DIR: _site
+  TETRIS_APP_HOST: "127.0.0.1"
+  TETRIS_APP_PORT: "8080"
+  TETRIS_APP_PATH: "pages/githubuniverseworkshops/github-devsecops-fundamentals"
+
+jobs:
+  run-acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.ci.txt
+      - name: Install NodeJS Dependencies
+        run: npm ci
+      - name: Test Site Build
+        run: |
+          mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run UI Test
+        continue-on-error: true
+        run: npx playwright test
+      - name: Upload UI Test Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+```
+
+## Step 2: Create Pre-Release Tag
+
+GitHub Actions can be used to create a new tag for the next version. Follow these steps:
+
+1. Create a new file named `02.create.pre-release-tag.yml` in the `.github/workflows` directory.
+2. Copy and paste the provided YAML code for versioning the main branch.
+3. Save the file and commit it to your repository.
+
+### Complete Example
+```yaml
+name: Version Changes to the Main Branch
+
+on:
   push:
     branches:
       - main
   workflow_call: {}
 
-# This workflow has read permissions for the contents
-permissions:
-  contents: read
-
-# This workflow consists of a single job named "lint-analyze-and-test-pass-01"
 jobs:
-  lint-analyze-and-test-pass-01:
-    # This job runs on the latest version of Ubuntu
-    runs-on: ubuntu-latest
-
-    # The steps that this job will execute
-    steps:
-      # This step checks out the repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # This step sets up Python 3.11
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
-      # This step installs the Python dependencies needed for CI
-      - name: Install CI Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-```
-
-#### Lint the source code
-
-```yaml
-      # This step lints the Python source code
-      - name: Lint Python source
-        run: |
-          ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
-```
-
-#### Run CodeQL analysis
-
-```yaml
-      # This step runs CodeQL analysis
-      - name: Run CodeQL analysis
-        uses: ./.github/actions/codeql-analysis
-```
-
-#### Run unit and integration tests
-
-```yaml
-      # This step runs unit and integration tests
-      - name: Run unit and integration tests
-        run: |
-          pytest --cov=ui/src ui/tests
-```
-
-#### Complete Example
-
-```yaml
-# This workflow is named "Preliminary Checks"
-name: Preliminary Checks
-
-# This workflow gets triggered on pull requests to the main branch and on workflow calls
-on:
-  pull_request:
-    branches:
-        - main
-  workflow_call: {}
-
-# This workflow has read permissions for the contents
-permissions:
-  contents: read
-
-# This workflow consists of a single job named "lint-analyze-and-test-pass-01"
-jobs:
-  lint-analyze-and-test-pass-01:
-    # This job runs on the latest version of Ubuntu
-    runs-on: ubuntu-latest
-
-    # The steps that this job will execute
-    steps:
-      # This step checks out the repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # This step sets up Python 3.11
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-
-      # This step installs the Python dependencies needed for CI
-      - name: Install CI Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r ui/requirements.ci.txt
-
-      # This step reviews the dependencies
-      - name: "Dependency Review"
-        uses: actions/dependency-review-action@v3
-        with:
-          config-file: >-
-            ./.github/dependency-review-config.yml
-
-      # This step lints the Python source code
-      - name: Lint Python source
-        run: |
-          ruff check --format=github --select=E9,F63,F7,F82 --target-version=py311 .
-
-      # This step runs CodeQL analysis
-      - name: Run CodeQL analysis
-        uses: ./.github/actions/codeql-analysis
-
-      # This step runs unit and integration tests
-      - name: Run unit and integration tests
-        run: |
-          pytest --cov=ui/src ui/tests
-
-      # This step sets up GitHub Pages
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v3
-
-      # This step builds GitHub Pages
-      - name: Build GitHub Pages
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./docs
-          destination: ./_site
-
-      # This step uploads the GitHub Pages artifact
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./_site
-
-      # This step deploys to GitHub Pages (currently commented out)
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v2
-```
-
-### Step 2: Continuous Delivery
-
-The next step is to create a new continuous delivery workflow for the next version. The following example shows how to create a new continuous delivery workflow for the next version.
-
-#### Build GitHub Pages
-
-```yaml
-name: Package Delivery Artifacts
-
-on:
-  push:
-    tags:
-      - "*pre-release*"
-    branches:
-      - main
-      - lab-2
-  workflow_dispatch: {}
-
-permissions:
-  contents: read
-  packages: write
-
-jobs:
-  package:
-    uses: ./.github/workflows/package.yml
-    with:
-      publish: true
-      package-name: ${{ github.event.repository.owner.login }}
-      package-namespace: ${{ github.event.repository.name }}
-      package-registry: ghcr.io
-    secrets:
-      package-registry-owner: ${{ github.event.repository.owner.login }}
-      package-registry-token: ${{ secrets.GITHUB_TOKEN }}
-```
-
-### Step 1: Create new `tag`
-
-GitHub Actions can be used to create a new tag for the next version. The following example shows how to create a new tag for the next version.
-
-```yaml
-# This is a GitHub Actions workflow for versioning. It is triggered on every push to the main branch.
-# It reads the content of the repository, retrieves the last version number, calculates the next version number, and creates a new git tag for the next version.
-name: Versioning
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  versioning:
+  version-main-branch-changes:
     runs-on: ubuntu-latest
     steps:
-      # The first step is to checkout the repository.
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      # The next step is to get the last version number.
       - name: Get last version number
         id: get_last_version
         run: |
@@ -260,7 +208,6 @@ jobs:
           last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
           echo "Last version is $last_version"
           echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
-      # The next step is to calculate the next version number.
       - name: Get next version number
         id: get_next_version
         run: |
@@ -276,8 +223,6 @@ jobs:
           echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
         env:
           last_version: ${{ steps.get_last_version.outputs.last_version }}
-      # The final step is to create a new git tag for the next version.
-
       - name: Create tag for the next version
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
@@ -286,21 +231,116 @@ jobs:
           git push origin "$next_version"
         env:
           next_version: ${{ steps.get_next_version.outputs.next_version }}-pre-release
+
 ```
 
-### Step 4: Dependabot
+## Step 3: Build and Push Docker Image
 
-The next step is to create a new dependabot configuration file for the next version. The following example shows how to create a new dependabot configuration file for the next version.
+The next step is to create a Docker container image and push it to GitHub Container Registry (GHCR). Follow these steps:
 
+1. Create a new file named `03.build-and-push-docker.yml` in the `.github/workflows` directory.
+2. Copy and paste the provided YAML code for building and pushing the Docker image.
+3. Save the file and commit it to your repository.
+
+### Complete Example
 ```yaml
-version: 2
-updates:
-  - package-ecosystem: "python"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-    interval: "weekly"
+name: Package Container Image
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Connect to GitHub Container Registry (ghcr)
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push to GHCR
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: ${{ github.workspace }}
+          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
 ```
+
+## Step 4: Complaince
+_optional during the dry-run to check the time and stick with 15 minutes_
+
+In this step, you will create a new Dependabot configuration file. Follow these steps:
+
+1. Create a new file named `04.dependabot.yml` in the root directory of your repository.
+2. Copy and paste the provided YAML code for configuring Dependabot.
+3. Save the file.
+
+### Complete Example
+```yaml
+name: Complaince
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_call: {}
+
+permissions:
+  actions: write
+  contents: read
+  security-events: write
+  checks: write
+
+env:
+  CI: 1
+  SITE_DIR: _site
+  TETRIS_APP_HOST: "127.0.0.1"
+  TETRIS_APP_PORT: "8080"
+  TETRIS_APP_PATH: "pages/githubuniverseworkshops/github-devsecops-fundamentals"
+
+jobs:
+  security-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Install node dependencies
+        run: npm ci
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v3
+        with:
+          config-file: >-
+            ./.github/dependency-review-config.yml
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: python,javascript
+          setup-python-dependencies: "false"
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+```
+
+Congratulations! You have completed the steps to set up a software supply chain for the `Tetris` app using GitHub Actions.
+
