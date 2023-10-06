@@ -48,7 +48,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.ci.txt
       - name: Run unit and integration tests
-        run: npm test
+        run: |
+          npm install -D @playwright/test
+          npm test
       - name: Dependency Review
         uses: actions/dependency-review-action@v3
         with:
