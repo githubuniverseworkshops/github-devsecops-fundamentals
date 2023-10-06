@@ -25,3 +25,4 @@ test("Tetris game", async ({ page }) => {
   await page.waitForTimeout(1 * 10 * 1000);
   await expect(page.getByText("score 00000")).not.toBeVisible();
 });
+
