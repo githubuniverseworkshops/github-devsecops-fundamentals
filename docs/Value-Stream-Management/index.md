@@ -1,1 +1,0 @@
-# Value Stream Management

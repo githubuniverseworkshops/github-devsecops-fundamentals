@@ -1,18 +1,21 @@
-# Version Control Lab
-
-_How do I efficiently develop a project and manage code?_
+# :test_tube:Value Stream Management and Version Control
 
 Software development may be approached individually or collaboratively. In either case, there is a basic need for an accessible storage for software project files, and tracking evolution of the project. `git` helps to track project files and assets that, giving transparency to different points in the history of the software development enabling easy switches across those points. Yet there remains the goal to make `git` projects accessible on the go and to co-collaborators distributed across locations - **GitHub** as a platform enables every as of the software development lifecycle.
 
+> _How do I collaborate on goals?_
+> _How do I efficiently develop a project and manage code?_
+
 ## Objectives
 
-- [ ] Rapidly onboard into the project
-- [ ] Implement features motivated by relevance in the business value stream
-- [ ] Locally validate work
-- [ ] Collaborate with stakeholders to validate done requirement
+- [x] Create a Project board and define a task
+- [x] Rapidly onboard into the project
+- [x] Implement features motivated by relevance in the business value stream
+- [x] Locally validate work
+- [x] Collaborate with stakeholders to validate done requirement
 
 ## Steps
 
+1. [Value Stream Management](./value-stream-management.md)
 1. [Prerequisites](./prerequisites.md)
 1. [Setup Development Environment](./setup.md)
 1. [Implement Features](./implement-features.md)

@@ -92,7 +92,6 @@ extra_javascript:
 nav:
   - index.md
   - Labs Instructions:
-      - Value-Stream-Management/index.md
       - Version-Control/index.md
       - Software-Supply-Chain/index.md
       - Release-Automation/index.md
