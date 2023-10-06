@@ -91,13 +91,9 @@ extra_javascript:
 
 nav:
   - index.md
-  - Labs:
-      - Value Stream Management: Value-Stream-Management/index.md
-      - Version Control: Version-Control/index.md
-          - Version-Control/collaborate.md
-          - Version-Control/implement-features.md
-          - Version-Control/prerequisites.md
-          - Version-Control/setup.md
-      - Securing the Software Supply Chain: Software-Supply-Chain/index.md
-      - Release Automation: Release-Automation/index.md
-  - Tetris: Tetris/index.html
+  - Labs Instructions:
+      - Value-Stream-Management/index.md
+      - Version-Control/index.md
+      - Software-Supply-Chain/index.md
+      - Release-Automation/index.md
+  - Tetris Game: Tetris/index.html
