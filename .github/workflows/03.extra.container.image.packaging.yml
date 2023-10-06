@@ -1,4 +1,5 @@
-name: Package Delivery - Docker
+
+name: Package Container Image
 
 on:
   pull_request:

@@ -1,4 +1,3 @@
-
 # Software Supply Chain
 
 ## Introduction

@@ -22,21 +22,21 @@ theme:
     - media: "(prefers-color-scheme)"
       toggle:
         icon: material/brightness-auto
-        name: Switch to light mode
+        name: Switch to dark mode
 
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
         icon: material/brightness-7
-        name: Switch to dark mode
+        name: Switch to system preference
 
     # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
         icon: material/brightness-4
-        name: Switch to system preference
+        name: Switch to light mode
 
 plugins:
   - search
@@ -91,13 +91,9 @@ extra_javascript:
 
 nav:
   - index.md
-  - Labs:
-      - Value Stream Management: Value-Stream-Management/index.md
-      - Version Control: Version-Control/index.md
-          - Version-Control/collaborate.md
-          - Version-Control/implement-features.md
-          - Version-Control/prerequisites.md
-          - Version-Control/setup.md
-      - Securing the Software Supply Chain: Software-Supply-Chain/index.md
-      - Release Automation: Release-Automation/index.md
-  - Tetris: Tetris/index.html
+  - Labs Instructions:
+      - Value-Stream-Management/index.md
+      - Version-Control/index.md
+      - Software-Supply-Chain/index.md
+      - Release-Automation/index.md
+  - Tetris Game: Tetris/index.html

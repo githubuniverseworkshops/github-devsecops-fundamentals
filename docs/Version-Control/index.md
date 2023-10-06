@@ -18,10 +18,12 @@ Software development may be approached individually or collaboratively. In eithe
 1. [Implement Features](./implement-features.md)
 1. [Run Test](./run-test.md)
 1. [Collaborate with Team to Validate Work](./collaborate.md)
+
 ## Lab Instructions
 
 - Install requirements
 - add /home/codespace/.local/lib/python3.10/site-packages/bin/mkdocs to path
+
 ### GitHub Repositories
 
 1. Fork the repository
