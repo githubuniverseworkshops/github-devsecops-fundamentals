@@ -11,6 +11,8 @@
 
 ![end-to-end](./docs/media/e2e-github.png)
 
+Goto >> https://reimagined-spork-wok19n1.pages.github.io/
+
 This self-paced workshop and introduces you to the fundamentals of DevSecOps using GitHub.
 
 For audiences at the start of their DevSecOps journey, the workshop addresses the following key concerns:
