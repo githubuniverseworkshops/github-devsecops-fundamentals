@@ -4,3 +4,4 @@ mkdocs-macros-plugin
 mkdocs-minify-plugin
 mkdocs-redirects
 nodeenv
+playwright
