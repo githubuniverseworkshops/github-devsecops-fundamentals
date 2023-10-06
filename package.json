@@ -7,7 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "playwright test"
+    "ui-test": "playwright test",
+    "unit-test": "jest --config=jest.config.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@playwright/test": "^1.38.1",
     "@types/node": "^20.8.2",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
   }
 }
