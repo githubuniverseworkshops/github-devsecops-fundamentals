@@ -179,10 +179,13 @@
       get('menu').appendChild(stats.domElement);
     }
 
-    function addEvents() {
-      document.addEventListener('keydown', keydown, false);
-      window.addEventListener('resize', resize, false);
-    }
+<<<<<<<<< Temporary merge branch 1
+</body>
+=========
+      function addEvents() {
+        document.addEventListener("keydown", keydown, false);
+        window.addEventListener("resize", resize, false);
+      }
 
     function resize(event) {
       canvas.width   = canvas.clientWidth;  // set canvas logical size equal to its physical size
@@ -428,10 +431,8 @@
 
   </script>
 
-</body>
-=======
     <script src="stats.js"></script>
     <script src="app.js"></script>
   </body>
->>>>>>> a274c2962638ebfcd0823bd06e1b8a872283a456
+
 </html>
