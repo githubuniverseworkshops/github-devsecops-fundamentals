@@ -32,7 +32,7 @@ The outcomes of this lab are:
 6. Get familiar with the GitHub Dependency Review Action.
 7. Get familiar with the GitHub Dependabot.
 
-## Step 1.1: Create Integration Checks
+## Step 1: Create Integration Checks
 
 The first step is to create a new integration check for the next version. Follow these steps:
 
@@ -112,7 +112,7 @@ jobs:
           retention-days: 30
 ```
 
-## Step 1.2: Continuous Delivery
+## Step 2: Continuous Delivery
 
 In this step, you will create a new continuous delivery workflow for the next version. Follow these steps:
 
@@ -174,8 +174,52 @@ jobs:
           path: playwright-report/
           retention-days: 30
 ```
+### Docker Example
 
-## Step 2: Create Pre-Release Tag
+The next step is to create a Docker container image and push it to GitHub Container Registry (GHCR). Follow these steps:
+
+1. Create a new file named `03.build-and-push-docker.yml` in the `.github/workflows` directory.
+2. Copy and paste the provided YAML code for building and pushing the Docker image.
+3. Save the file and commit it to your repository.
+
+### Complete Example
+```yaml
+name: Package Container Image
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Connect to GitHub Container Registry (ghcr)
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push to GHCR
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: ${{ github.workspace }}
+          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+```
+
+## Step 3: Create Pre-Release Tag
 
 GitHub Actions can be used to create a new tag for the next version. Follow these steps:
 
@@ -234,50 +278,7 @@ jobs:
 
 ```
 
-## Step 3: Build and Push Docker Image
 
-The next step is to create a Docker container image and push it to GitHub Container Registry (GHCR). Follow these steps:
-
-1. Create a new file named `03.build-and-push-docker.yml` in the `.github/workflows` directory.
-2. Copy and paste the provided YAML code for building and pushing the Docker image.
-3. Save the file and commit it to your repository.
-
-### Complete Example
-```yaml
-name: Package Container Image
-
-on:
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch: {}
-
-permissions:
-  contents: read
-  packages: write
-
-
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      # Connect to GitHub Container Registry (ghcr)
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push to GHCR
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          context: ${{ github.workspace }}
-          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
-```
 
 ## Step 4: Complaince
 _optional during the dry-run to check the time and stick with 15 minutes_
