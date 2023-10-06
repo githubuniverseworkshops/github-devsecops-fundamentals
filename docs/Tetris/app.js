@@ -555,3 +555,5 @@ function drawBlock(ctx, x, y, color) {
 //-------------------------------------------------------------------------
 
 run();
+
+module.exports = { setScore, addScore };
