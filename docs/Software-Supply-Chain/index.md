@@ -20,7 +20,7 @@ The objectives of this lab are to:
 1. Create Integration Checks for the `Tetris` app using GitHub Actions.
 2. Create a Continuous Delivery workflow for the `Tetris` app using GitHub Actions.
 3. Create a new pre-release `tag` for the `Tetris` app using GitHub Actions.
-4. Create a new Dependabot configuration file for the `Tetris` app using GitHub Actions.
+4. Create a Compliance using CodeQL, Dependcy Review, and Dependabot.
 
 ## Lab Outcomes
 
