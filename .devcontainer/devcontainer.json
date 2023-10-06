@@ -29,7 +29,9 @@
         "ms-python.pylint",
         "ms-python.vscode-pylance",
         "ms-vsliveshare.vsliveshare",
-        "ms-playwright.playwright"
+        "ms-playwright.playwright",
+        "GitHub.copilot-chat",
+        "GitHub.copilot"
       ]
     }
   }
