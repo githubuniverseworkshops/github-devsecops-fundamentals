@@ -34,5 +34,11 @@
         "GitHub.copilot"
       ]
     }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "installTools": true,
+      "version": "3.11"
+    }
   }
 }
