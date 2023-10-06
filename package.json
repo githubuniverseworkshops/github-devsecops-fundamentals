@@ -25,6 +25,7 @@
   "homepage": "https://github.com/githubuniverseworkshops/github-devsecops-fundamentals#readme",
   "devDependencies": {
     "@playwright/test": "^1.38.1",
-    "@types/node": "^20.8.2"
+    "@types/node": "^20.8.2",
+    "jest": "^29.7.0"
   }
 }
