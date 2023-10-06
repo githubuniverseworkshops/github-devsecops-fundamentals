@@ -57,7 +57,7 @@ jobs:
         uses: github/codeql-action/analyze@v2
   test:
     runs-on: ubuntu-latest
-    needs: security-checks
+    needs: run-checks
     steps:
       - uses: actions/checkout@v3
       - name: Install Python dependencies
