@@ -16,14 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-
+    - name: downcase REPO
+      run: |
+        echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
     - name: Build docker image
       run: |
-        docker build -t ${{ github.event.organization }}/${{ github.event.repository }}:${{ github.sha }} ./azure-vote
+        docker build -t ${{ env.REPO }}:${{ github.sha }} .
     - name: Scan container image
       uses: Azure/container-scan@v0
       with:
-        image-name: ${{ github.event.organization }}/${{ github.event.repository }}:${{ github.sha }}
+        image-name: ${{ env.REPO }}:${{ github.sha }}
         severity-threshold: CRITICAL
         run-quality-checks: false
   build-and-push:
@@ -51,4 +53,4 @@ jobs:
         push: true
         platforms: linux/amd64,darwin/amd64,linux/arm64
         context: ${{ github.workspace }}
-        tags: ghcr.io/${{ github.event.organization }}/${{ github.event.repository }}:${{ github.sha }}
+        tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
