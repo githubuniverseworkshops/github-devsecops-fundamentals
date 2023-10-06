@@ -1,6 +1,10 @@
-# GitHub DevSecOps Fundamentals | Lab Instructions
+# :octicons-mark-github-16: GitHub Platform
 
-- [ ] Value Stream Management
-- [ ] Version Control
-- [ ] Securing the Software Supply Chain
-- [ ] Release Automation
+![end-to-end](media/e2e-github.png)
+
+!!! example "Labs"
+
+    - [x] [Value Stream Management](Value-Stream-Management/)
+    - [x] [Version Control](Version-Control/)
+    - [x] [Secured Software Supply Chain](Software-Supply-Chain/)
+    - [x] [Release Automation](Release-Automation/)
