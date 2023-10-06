@@ -10,6 +10,8 @@ permissions:
   actions: write
   contents: read
   security-events: write
+  checks: write
+  id-token: write
 
 env:
   CI: 1
