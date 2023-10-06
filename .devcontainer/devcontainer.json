@@ -29,8 +29,16 @@
         "ms-python.pylint",
         "ms-python.vscode-pylance",
         "ms-vsliveshare.vsliveshare",
-        "ms-playwright.playwright"
+        "ms-playwright.playwright",
+        "GitHub.copilot-chat",
+        "GitHub.copilot"
       ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "installTools": true,
+      "version": "3.11"
     }
   }
 }
