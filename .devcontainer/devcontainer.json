@@ -6,18 +6,15 @@
   },
   "build": {
     "dockerfile": "./Dockerfile",
-    "context": "."
+    "context": ".."
   },
-  // "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "postAttachCommand": "python -m mkdocs serve --dev-addr 127.0.0.1:8000",
   "forwardPorts": [
-    8000
+    8000,
+    8080
   ],
-  "postCreateCommand": "python3 -m pip install --requirement requirements.txt",
-  // Configure tool-specific properties.
   "customizations": {
-    // Configure properties specific to VS Code.
     "vscode": {
-      // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "GitHub.vscode-pull-request-github",
         "ms-azuretools.vscode-docker",
@@ -37,9 +34,9 @@
     }
   },
   "features": {
-    "ghcr.io/devcontainers/features/python:1": {
-      "installTools": true,
-      "version": "3.11"
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
     }
   }
 }
