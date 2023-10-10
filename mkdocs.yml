@@ -18,25 +18,25 @@ theme:
     logo: simple/githubactions
   locale: en
   palette:
-    # Palette toggle for automatic mode
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to dark mode
-
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      toggle:
-        icon: material/brightness-7
-        name: Switch to system preference
-
     # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
+    - scheme: slate
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+      media: "(prefers-color-scheme: dark)"
+
+    # # Palette toggle for automatic mode
+    # - toggle:
+    #     icon: material/brightness-auto
+    #     name: Switch to dark mode
+    #   media: "(prefers-color-scheme)"
+
+    # # Palette toggle for light mode
+    # - scheme: default
+    #   toggle:
+    #     icon: material/brightness-7
+    #     name: Switch to system preference
+    #   media: "(prefers-color-scheme: light)"
 
 plugins:
   - search
