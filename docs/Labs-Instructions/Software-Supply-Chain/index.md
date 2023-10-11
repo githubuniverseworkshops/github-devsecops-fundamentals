@@ -1,4 +1,4 @@
-# Software Supply Chain Workshop
+# :test_tube: Software Supply Chain Workshop
 
 ## Introduction
 
