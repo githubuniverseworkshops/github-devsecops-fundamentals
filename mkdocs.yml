@@ -137,7 +137,7 @@ nav:
   - index.md
   - Labs Instructions:
       - Introduction: Labs-Instructions/index.md
-      - Labs-Instructions/Version-Control/index.md
+      - Labs-Instructions/Collaboration/index.md
       - Labs-Instructions/Software-Supply-Chain/index.md
       - Labs-Instructions/Release-Automation/index.md
   - Tetris Game: Tetris/index.html
