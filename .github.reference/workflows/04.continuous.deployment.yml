@@ -1,0 +1,56 @@
+name: Deploy Release
+
+on:
+  release:
+    types:
+      - released
+  workflow_dispatch: {}
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+permissions:
+  packages: none
+  contents: write
+  issues: write
+  deployments: write
+
+env:
+  CI: 1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.site-url }}
+
+    steps:
+      - name: Download release
+        run: |
+          curl -o assets.zip ${{ github.event.release.assets_url }}
+          # unarchive asset
+
+      - name: Deploy
+        run: |
+          # do git configs
+          git push origin HEAD:gh-pages
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install NodeJS dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run post-deployment UI test
+        run: |
+          # 1. disable automatic run of webserver by test framework
+          # 2. set baseurl to ${{ steps.deploy.outputs.site-url }}
+          npx playwright test
+        # env:
+        #   TETRIS_APP_HOST: "127.0.0.1"
+        #   TETRIS_APP_PORT: "8000"
+        #   TETRIS_APP_PATH: "pages/githubuniverseworkshops/github-devsecops-fundamentals"
