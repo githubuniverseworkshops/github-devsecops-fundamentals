@@ -6,8 +6,8 @@ In this step we will containerize the application using Docker and push to GitHu
 - _**Estimated completion time:**_ 5 minutes
 - _**Outcome:**_ The application will be containerized and pushed to GitHub Container Registry.
 
-> [!NOTE]
-> We will continue working on the same branch `contiuous-integration-deployment`.
+!!! Note
+    We will continue working on the same branch `contiuous-integration-deployment`.
 
 ## Prerequisites
 
