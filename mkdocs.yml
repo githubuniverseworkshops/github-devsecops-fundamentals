@@ -134,7 +134,7 @@ extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
 
 nav:
-  - GitHub Platform: index.md
+  - index.md
   - Labs Instructions:
       - Introduction: Labs-Instructions/index.md
       - Labs-Instructions/Version-Control/index.md
