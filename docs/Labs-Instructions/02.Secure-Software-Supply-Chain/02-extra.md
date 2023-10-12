@@ -1,4 +1,4 @@
-# Extra: Packing The Application
+# :test_tube: Extra: Packing The Application
 
 In this step we will containerize the application using Docker and push to GitHub Container Registry.
 

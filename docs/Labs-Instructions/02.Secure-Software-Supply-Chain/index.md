@@ -1,4 +1,4 @@
-# Secure the Software Supply Chain
+# :test_tube: Secure the Software Supply Chain
 
 ## Introduction
 
