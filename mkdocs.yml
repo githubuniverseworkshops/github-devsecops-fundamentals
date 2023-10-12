@@ -144,6 +144,12 @@ nav:
           - Labs-Instructions/01.Collaborate/03.validate-work.md
       - Secure the Software Supply Chain:
           - Labs-Instructions/02.Secure-Software-Supply-Chain/index.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/00.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/01.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/02.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/02-extra.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/03.md
+          - Labs-Instructions/02.Secure-Software-Supply-Chain/04.md
       - Automate-Release:
           - Labs-Instructions/03.Automate-Release/index.md
   - Tetris Game: Tetris/index.html
