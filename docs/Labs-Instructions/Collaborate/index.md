@@ -1,4 +1,4 @@
-# :test_tube: Version Control
+# :test_tube: Collaboration
 
 Software development may be approached individually or collaboratively. In either case, there is a basic need for an accessible storage for software project files, and tracking evolution of the project. `git` helps to track project files and assets that, giving transparency to different points in the history of the software development enabling easy switches across those points. Yet there remains the goal to make `git` projects accessible on the go and to co-collaborators distributed across locations - **GitHub** as a platform enables every as of the software development lifecycle.
 

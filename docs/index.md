@@ -69,8 +69,8 @@ This self-paced workshop will enable you acquire the capabilities to implement a
 
     1. :material-security:{ .lg .middle } **Configure base security**
 
-        1. Navigate to the <span style="background-color: grey; color: black; font-weight: bold; padding: 0.25em 0.75em;">:octicons-gear-16: Settings</span> tab on your new workshop repository.
-        2. Under the <span style="background-color: white; color: #555; font-weight: bold; padding: 0.25em 0.75em;">Security</span> section of the menu, select <span style="background-color: white; color: #555; font-weight: bold; padding: 0.25em 0.75em; border-left: 0.2em solid blue">:octicons-codescan-16: Code security and analysis</span>. Then configure the settings to match as follows.
+        1. Navigate to the <span style="background-color: #000; color: #fff; font-weight: bold; padding: 0.25em 0.75em;">:octicons-gear-16: Settings</span> tab on your new workshop repository.
+        2. Under the <span style="background-color: white; color: #555; font-weight: bold; padding: 0.25em 0.75em;">Security</span> section of the menu, select <span style="background-color: white; color: #555; font-weight: bold; padding: 0.25em 0.75em; border-left: 0.2em solid blue">:octicons-codescan-16: Code security and analysis</span>. Then configure the settings to match as follows (by clicking <span style="background-color: #333; color: #fff; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Enable</span> where the option is/becomes available).
 
             ![code-security-and-analysis-configuration](assets/img/code-security-and-analysis-configuration.png)
         <br /><br />
@@ -79,9 +79,11 @@ This self-paced workshop will enable you acquire the capabilities to implement a
 
         GitHub Codespaces enables you to instantly start coding on the workshop project. Personal accounts on GitHub can benefit from a [free quota of GitHub Codespaces usage](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts).
 
+        1. Navigate to the <span style="background-color: #000; color: #fff; font-weight: bold; padding: 0.25em 0.75em;">:octicons-code-16: Code</span> tab.
+
         1. Open the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">:octicons-code-16: Code :material-menu-down:</span> menu and click on :material-mouse: <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Create codespaces on main</span>.
 
-        2. {==
+        1. {==
 
             **Leave the development environment to initialize and run, we will come back to use it later.**
 
