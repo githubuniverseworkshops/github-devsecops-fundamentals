@@ -16,6 +16,21 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/01.Collaborate/01/</loc>
+         <lastmod>2023-10-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/01.Collaborate/02/</loc>
+         <lastmod>2023-10-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/01.Collaborate/03/</loc>
+         <lastmod>2023-10-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/02.Secure-Software-Supply-Chain/</loc>
          <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
@@ -42,6 +57,16 @@
     </url>
     <url>
          <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/03.Automate-Release/</loc>
+         <lastmod>2023-10-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/03.Automate-Release/01/</loc>
+         <lastmod>2023-10-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/03.Automate-Release/02/</loc>
          <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
