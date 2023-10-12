@@ -1,48 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Release-Automation/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Software-Supply-Chain/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Release-Automation/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Version-Control/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Software-Supply-Chain/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Version-Control/collaborate/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Version-Control/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Version-Control/implement-features/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Version-Control/collaborate/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Version-Control/prerequisites/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Version-Control/implement-features/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Version-Control/setup/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Version-Control/prerequisites/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals/Version-Control/value-stream-management/</loc>
-         <lastmod>2023-10-06</lastmod>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Version-Control/project-management/</loc>
+         <lastmod>2023-10-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/Version-Control/setup/</loc>
+         <lastmod>2023-10-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
