@@ -9,4 +9,6 @@
   <a href="https://obscure-goldfish-7pqxvxr4wrcx46j-8080.preview.app.github.dev/pages/githubuniverseworkshops/github-devsecops-fundamentals/#learning-objectives">Learning Objectives</a>
 </p>
 
-**Goto ≫ [workshop site](https://studious-spork-n89w31m.pages.github.io).**
+<p align="center">
+Goto <a style="font-weight=bold" href="https://studious-spork-n89w31m.pages.github.io">≫ workshop site</a>
+</p>
