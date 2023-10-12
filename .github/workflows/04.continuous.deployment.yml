@@ -29,8 +29,20 @@ jobs:
     steps:
       - name: Download release
         run: |
-          curl -o assets.zip ${{ github.event.release.assets_url }}
+          mkdir -p assets
+          cd assets
+            curl --remote-name ${{ github.event.release.assets_url }}
+            curl --remote-name ${{ github.event.release.tarball_url }}
+            curl --remote-name ${{ github.event.release.zipball_url }}
+
+            ls -al
+          cd -
           # unarchive asset
+      - name: Debug
+        uses: actions/upload-artifact@v3
+        with:
+          name: assets
+          path: assets
 
       - name: Deploy
         run: |
