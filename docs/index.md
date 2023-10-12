@@ -4,7 +4,7 @@
 
 This self-paced workshop will enable you acquire the capabilities to implement a DevSecOps mindset, leveraging the GitHub platform for a seamless developer experience.
 
-![end-to-end](media/e2e-github.png)
+![end-to-end](assets/img/e2e-github.png)
 
 ## :octicons-goal-16: Learning Objectives
 
@@ -58,17 +58,25 @@ This self-paced workshop will enable you acquire the capabilities to implement a
                     - [Free use of GitHub Advanced Security features](https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security#about-advanced-security-features).
              - Scroll down and click the **Create repository** button at the bottom of the form.
 
-             ![Create a new repository from a template](assets/img/create-a-new-repository.png)
+                 ![Create a new repository from a template](assets/img/create-a-new-repository.png)
         1. After your new repository is created, wait about 20 seconds, then refresh the page.
         <br /><br />
 
-    1. :octicons-codespaces-16: **Provision a new cloud development environment for the workshop**
+    1. :material-security:{ .lg .middle } **Configure base security**
+
+        1. Navigate to the <span style="background-color: grey; color: black; font-weight: bold; padding: 0.25em 0.75em;">:octicons-gear-16: Settings</span> tab on your new workshop repository.
+        2. Under the <span style="background-color: white; color: #555; font-weight: bold; padding: 0.25em 0.75em;">Security</span> section of the menu, select <span style="background-color: white; color: #555; font-weight: bold; padding: 0.25em 0.75em; border-left: 0.2em solid blue">:octicons-codescan-16: Code security and analysis</span>. Then configure the settings to match as follows.
+
+            ![code-security-and-analysis-configuration](assets/img/code-security-and-analysis-configuration.png)
+        <br /><br />
+
+    2. :octicons-codespaces-16: **Provision a new cloud development environment for the workshop**
 
         GitHub Codespaces enables you to instantly start coding on the workshop project. Personal accounts on GitHub can benefit from a [free quota of GitHub Codespaces usage](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts).
 
         1. Open the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">:octicons-code-16: Code :material-menu-down:</span> menu and click on :material-mouse: <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Create codespaces on main</span>.
 
-        1. {==
+        2. {==
 
             **Leave the development environment to initialize and run, we will come back to use it later.**
 
@@ -77,9 +85,9 @@ This self-paced workshop will enable you acquire the capabilities to implement a
 
         ![Create a new GitHub Codespaces](assets/img/create-a-new-codespaces.png)
 
-
 ## :books: Resources
 
+- [ ]
 - [Start coding instantly with Codespaces](https://github.com/features/codespaces)
 - [Create diagrams to convey information through charts and graphs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
 - [Include diagrams in your Markdown files with Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/)
