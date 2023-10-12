@@ -62,6 +62,11 @@ This self-paced workshop will enable you acquire the capabilities to implement a
         1. After your new repository is created, wait about 20 seconds, then refresh the page.
         <br /><br />
 
+    1. :octicons-feed-discussion-16: **Enable Discussions**
+
+        <span class="md-button">[:material-mouse: Enabling GitHub Discussions on your repository](https://docs.github.com/en/discussions/quickstart#enabling-github-discussions-on-your-repository){:target="\_blank"}</span>
+        <br /><br />
+
     1. :material-security:{ .lg .middle } **Configure base security**
 
         1. Navigate to the <span style="background-color: grey; color: black; font-weight: bold; padding: 0.25em 0.75em;">:octicons-gear-16: Settings</span> tab on your new workshop repository.
@@ -70,7 +75,7 @@ This self-paced workshop will enable you acquire the capabilities to implement a
             ![code-security-and-analysis-configuration](assets/img/code-security-and-analysis-configuration.png)
         <br /><br />
 
-    2. :octicons-codespaces-16: **Provision a new cloud development environment for the workshop**
+    1. :octicons-codespaces-16: **Provision a new cloud development environment for the workshop**
 
         GitHub Codespaces enables you to instantly start coding on the workshop project. Personal accounts on GitHub can benefit from a [free quota of GitHub Codespaces usage](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#monthly-included-storage-and-core-hours-for-personal-accounts).
 
@@ -87,7 +92,7 @@ This self-paced workshop will enable you acquire the capabilities to implement a
 
 ## :books: Resources
 
-- [ ]
+- [Secure at every step](https://github.com/features/security)
 - [Start coding instantly with Codespaces](https://github.com/features/codespaces)
 - [Create diagrams to convey information through charts and graphs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
 - [Include diagrams in your Markdown files with Mermaid](https://github.blog/2022-02-14-include-diagrams-markdown-files-mermaid/)
