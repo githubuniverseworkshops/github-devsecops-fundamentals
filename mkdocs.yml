@@ -1,5 +1,5 @@
 ---
-site_url: https://github.com/pages/githubuniverseworkshops/github-devsecops-fundamentals
+site_url: https://studious-spork-n89w31m.pages.github.io
 site_name: GitHub DevSecOps Fundamental
 site_author: Igwe Kalu <igwejk@github.com>
 site_description: GitHub Universe 2023 | Workshop
@@ -10,7 +10,7 @@ remote_branch: gh-pages
 # edit_uri: blob/main/docs/
 edit_uri: edit/main/docs/
 
-repo_url: https://github.com/githubuniverseworkshops/github-devsecops-fundamentals
+repo_url: https://github.com/demos-by-igwejk/github-devsecops-fundamentals
 
 repo_name: gh-devsecops-fundamentals
 
