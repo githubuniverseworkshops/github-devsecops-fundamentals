@@ -15,11 +15,13 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID_ACTIONS_ASSISTANT }}
           private-key: ${{ secrets.APP_PRIVATE_KEY_ACTIONS_ASSISTANT }}
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: ${{ steps.generate-app-token.outputs.token }}
+
       - name: Get last version number
         id: get_last_version
         run: |
@@ -27,6 +29,7 @@ jobs:
           last_version=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
           echo "Last version is $last_version"
           echo "last_version=$last_version" >> "$GITHUB_OUTPUT"
+
       - name: Get next version number
         id: get_next_version
         run: |
@@ -42,6 +45,7 @@ jobs:
           echo "next_version=$next_version" >> "$GITHUB_OUTPUT"
         env:
           last_version: ${{ steps.get_last_version.outputs.last_version }}
+
       - name: Create tag for the next version
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
