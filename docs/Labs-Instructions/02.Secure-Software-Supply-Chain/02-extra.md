@@ -25,45 +25,45 @@ In this step we will containerize the application using Docker and push to GitHu
 1. Navigate to `.github/workflows` and open the file `03.extra.container.image.packaging.yml`.
 2. Add the following content to the file:
 
-    ```yml
-        name: Package Container Image
+    ``` yaml
+name: Package Container Image
 
-        on:
-        pull_request:
-            branches:
-            - main
-        workflow_dispatch: {}
+on:
+pull_request:
+    branches:
+    - main
+workflow_dispatch: {}
 
-        permissions:
-        contents: read
-        packages: write
+permissions:
+contents: read
+packages: write
 
 
-        jobs:
-        build-and-push:
-            runs-on: ubuntu-latest
-            steps:
-            - uses: actions/checkout@v3
+jobs:
+build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
 
-            # Connect to GitHub Container Registry (ghcr)
-            - name: Login to GitHub Container Registry
-                uses: docker/login-action@v3
-                with:
-                registry: ghcr.io
-                username: ${{ github.actor }}
-                password: ${{ secrets.GITHUB_TOKEN }}
+    # Connect to GitHub Container Registry (ghcr)
+    - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Build and push to GHCR
-                uses: docker/build-push-action@v2
-                with:
-                push: true
-                context: ${{ github.workspace }}
-                tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+    - name: Build and push to GHCR
+        uses: docker/build-push-action@v2
+        with:
+        push: true
+        context: ${{ github.workspace }}
+        tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
     ```
 
 3. Save the file and commit the changes to the branch `continuous-integration-deployment`.
 
-    ```bash
+    ``` bash
         git add .
         git commit -m "feat: add container image packaging workflow"
         git push origin continuous-integration-deployment
