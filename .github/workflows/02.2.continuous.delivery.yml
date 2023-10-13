@@ -39,7 +39,7 @@ jobs:
           # python -m mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
           python -m mkdocs build --clean --verbose --site-dir '${{ env.SITE_DIR }}'
       - run: |
-          ls -al
+          echo "Site directory ${{ env.SITE_DIR }} content:"
           ls -al ${{ env.SITE_DIR }}
       - name: Create Pre-Release
         uses: softprops/action-gh-release@v1
