@@ -12,7 +12,7 @@ permissions:
   pages: write
 
 env:
-  CI: 1
+  CI: true
   SITE_DIR: _site
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           enablement: "true"
       - name: Build Site
         run: |
-          python mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
+          python -m mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
       - name: Create Pre-Release
         uses: softprops/action-gh-release@v1
         with:

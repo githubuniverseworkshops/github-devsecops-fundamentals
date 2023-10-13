@@ -11,7 +11,7 @@ permissions:
   security-events: write
 
 env:
-  CI: 1
+  CI: true
   SITE_DIR: _site
   TETRIS_APP_HOST: "127.0.0.1"
   TETRIS_APP_PORT: "8080"
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.12
       - uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -36,7 +36,7 @@ jobs:
         run: npm ci
       - name: Test Site Build
         run: |
-          mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
+          python -m mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run UI Test

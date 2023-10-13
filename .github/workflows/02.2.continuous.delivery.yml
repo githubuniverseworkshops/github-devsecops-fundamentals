@@ -12,7 +12,7 @@ permissions:
   pages: write
 
 env:
-  CI: 1
+  CI: true
   SITE_DIR: _site
 
 jobs:
@@ -26,9 +26,16 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           enablement: "true"
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Build Site
         run: |
-          python mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
+          python -m mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
       - name: Create Pre-Release
         uses: softprops/action-gh-release@v1
         with:

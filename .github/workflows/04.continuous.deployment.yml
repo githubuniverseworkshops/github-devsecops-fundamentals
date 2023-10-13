@@ -17,14 +17,14 @@ permissions:
   deployments: write
 
 env:
-  CI: 1
+  CI: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: ${{ steps.deploy.outputs.site-url }}
+    # environment:
+    #   name: production
+    #   url: ${{ steps.deploy.outputs.site-url }}
 
     steps:
       - name: Download release

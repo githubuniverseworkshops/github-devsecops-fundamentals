@@ -17,7 +17,7 @@ permissions:
   deployments: write
 
 env:
-  CI: 1
+  CI: true
 
 jobs:
   deploy:
