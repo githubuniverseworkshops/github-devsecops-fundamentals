@@ -26,39 +26,39 @@ In this step we will containerize the application using Docker and push to GitHu
 2. Add the following content to the file:
 
     ``` yaml
-name: Package Container Image
-
-on:
-pull_request:
-    branches:
-    - main
-workflow_dispatch: {}
-
-permissions:
-contents: read
-packages: write
-
-
-jobs:
-build-and-push:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    # Connect to GitHub Container Registry (ghcr)
-    - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Build and push to GHCR
-        uses: docker/build-push-action@v2
-        with:
-        push: true
-        context: ${{ github.workspace }}
-        tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+    name: Package Container Image
+    
+    on:
+    pull_request:
+        branches:
+        - main
+    workflow_dispatch: {}
+    
+    permissions:
+    contents: read
+    packages: write
+    
+    
+    jobs:
+    build-and-push:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+    
+        # Connect to GitHub Container Registry (ghcr)
+        - name: Login to GitHub Container Registry
+            uses: docker/login-action@v3
+            with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+    
+        - name: Build and push to GHCR
+            uses: docker/build-push-action@v2
+            with:
+            push: true
+            context: ${{ github.workspace }}
+            tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
     ```
 
 3. Save the file and commit the changes to the branch `continuous-integration-deployment`.
