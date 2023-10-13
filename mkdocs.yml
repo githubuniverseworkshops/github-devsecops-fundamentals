@@ -144,7 +144,7 @@ nav:
           - Labs-Instructions/01.Collaborate/index.md
           - Labs-Instructions/01.Collaborate/01.md
           - Labs-Instructions/01.Collaborate/02.md
-          - Labs-Instructions/01.Collaborate/03.md
+          # - Labs-Instructions/01.Collaborate/03.md
       - Secure the Software Supply Chain:
           - Labs-Instructions/02.Secure-Software-Supply-Chain/index.md
           - Labs-Instructions/02.Secure-Software-Supply-Chain/00.md
