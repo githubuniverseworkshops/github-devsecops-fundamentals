@@ -50,7 +50,9 @@ jobs:
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git tag -a "$new_version" -m "Version $new_version"
-          git push --force origin "$new_version"
+
+          if git tag -a "$new_version" -m "Version $new_version"; then
+            git push origin "$new_version"
+          fi
         env:
           new_version: ${{ steps.get_new_version.outputs.new_version }}-pre-release
