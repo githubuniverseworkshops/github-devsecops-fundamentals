@@ -13,7 +13,7 @@ permissions:
 
 env:
   CI: true
-  SITE_DIR: _site
+  SITE_DIR: site
 
 jobs:
   package-delivery:

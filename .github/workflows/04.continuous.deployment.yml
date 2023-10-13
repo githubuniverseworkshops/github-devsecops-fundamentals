@@ -7,62 +7,137 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: production-deployment
+  group: github-pages
   cancel-in-progress: false
 
 permissions:
-  packages: none
   contents: write
-  issues: write
   deployments: write
+  pages: write
+  id-token: write
 
 env:
   CI: true
+  SITE_DIR: site
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # environment:
-    #   name: production
-    #   url: ${{ steps.deploy.outputs.site-url }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Download release
-        run: |
-          mkdir -p assets
-          cd assets
-            curl --remote-name ${{ github.event.release.assets_url }}
-            curl --remote-name ${{ github.event.release.tarball_url }}
-            curl --remote-name ${{ github.event.release.zipball_url }}
-
-            ls -al
-          cd -
-          # unarchive asset
-      - name: Debug
-        uses: actions/upload-artifact@v3
+      - uses: actions/create-github-app-token@v1
+        id: generate-app-token
         with:
-          name: assets
-          path: assets
+          app-id: ${{ vars.APP_ID_ACTIONS_ASSISTANT }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY_ACTIONS_ASSISTANT }}
 
-      - name: Deploy
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      #   with:
+      #     token: ${{ steps.generate-app-token.outputs.token }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      # - name: Prepare working directory
+      #   run: |
+      #     git switch --orphan gh-pages
+
+      # - name: Pre-deployment
+      #   run: |
+      #     curl -L                                                                     \
+      #       -O '${{ env.SITE_DIR }}.zip'                                              \
+      #       -H "Accept: application/octet-stream"                                     \
+      #       -H "Authorization: Bearer ${{ steps.generate-app-token.outputs.token }}"  \
+      #       -H "X-GitHub-Api-Version: 2022-11-28"                                     \
+      #       https://api.github.com/repos/${{ github.repository }}/releases/assets/${{ github.event.release.id }}
+
+      #     echo '##### Debug'
+      #     ls -al
+
+      #     unzip -o '${{ env.SITE_DIR }}.zip'
+
+      #     echo '##### Debug'
+      #     ls -al
+
+      #     echo '##### Debug'
+      #     ls -al '${{ env.SITE_DIR }}'
+
+      #     rm -f '${{ env.SITE_DIR }}.zip'
+      #     cp --recursive '${{ env.SITE_DIR }}'/* .
+      #     echo '##### Debug'
+      #     ls -al
+
+      #     rm -rf '${{ env.SITE_DIR }}'
+      #     echo '##### Debug'
+      #     ls -al
+
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v2
+      #   with:
+      #     path: "${{ env.SITE_DIR }}"
+
+      # - name: Prepare working directory
+      #   run: |
+      #     git switch --orphan gh-pages
+
+      - name: Prepare release
         run: |
-          # do git configs
-          git push origin HEAD:gh-pages
+          curl -L                                                                     \
+            -O '${{ env.SITE_DIR }}.zip'                                              \
+            -H "Accept: application/octet-stream"                                     \
+            -H "Authorization: Bearer ${{ steps.generate-app-token.outputs.token }}"  \
+            -H "X-GitHub-Api-Version: 2022-11-28"                                     \
+            https://api.github.com/repos/${{ github.repository }}/releases/assets/${{ github.event.release.id }}
 
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+          echo '##### Debug'
+          ls -al
+
+          unzip -o '${{ env.SITE_DIR }}.zip'
+          echo '##### Debug'
+          ls -al
+
+      - name: Fix site file permissions
+        run: |
+          chmod -c -R +rX "${{ env.SITE_DIR }}/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          node-version: 20
-      - name: Install NodeJS dependencies
-        run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run post-deployment UI test
-        run: |
-          # 1. disable automatic run of webserver by test framework
-          # 2. set baseurl to ${{ steps.deploy.outputs.site-url }}
-          npx playwright test
-        # env:
-        #   TETRIS_APP_HOST: "127.0.0.1"
-        #   TETRIS_APP_PORT: "8000"
-        #   TETRIS_APP_PATH: "pages/githubuniverseworkshops/github-devsecops-fundamentals"
+          path: "${{ env.SITE_DIR }}"
+          retention-days: "2"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        # with:
+        #   token: ${{ steps.generate-app-token.outputs.token }}
+
+      # - name: Deploy
+      #   run: |
+      #     git config --global user.name "${GITHUB_ACTOR}"
+      #     git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      #     git add .
+      #     git commit -m "Deploy ${{ github.event.release.tag_name }}"
+      #     git push --force --set-upstream origin HEAD:gh-pages
+
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 20
+      # - name: Install NodeJS dependencies
+      #   run: npm ci
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
+      # - name: Run post-deployment UI test
+      #   run: |
+      #     # 1. disable automatic run of webserver by test framework
+      #     # 2. set baseurl to ${{ steps.deploy.outputs.site-url }}
+      #     npx playwright test
+      # env:
+      #   TETRIS_APP_HOST: "127.0.0.1"
+      #   TETRIS_APP_PORT: "8000"
+      #   TETRIS_APP_PATH: "pages/githubuniverseworkshops/github-devsecops-fundamentals"
