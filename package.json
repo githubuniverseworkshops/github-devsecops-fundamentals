@@ -1,13 +1,13 @@
 {
   "name": "github-devsecops-fundamentals",
   "version": "1.0.0",
-  "description": "GitHub Universe 2023: GitHub DevSecOps Fundamentals",
+  "description": "GitHub Universe 2023 workshop: GitHub DevSecOps Fundamentals",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "ui-test": "playwright test",
+    "functional-test": "npx playwright test",
     "unit-test": "jest --config=jest.config.js"
   },
   "repository": {
@@ -16,7 +16,10 @@
   },
   "keywords": [
     "GitHub",
-    "DevSecOps"
+    "DevSecOps",
+    "Fundamentals",
+    "Universe",
+    "Workshop"
   ],
   "author": "services@github.com",
   "license": "MIT",

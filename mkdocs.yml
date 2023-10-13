@@ -1,18 +1,16 @@
 ---
-site_url: https://studious-spork-n89w31m.pages.github.io
-site_name: GitHub DevSecOps Fundamental
+edit_uri: edit/main/docs/
+
+site_url: https://demos-by-igwejk.github.io/github-devsecops-fundamentals
+site_name: GitHub DevSecOps Fundamentals
 site_author: Igwe Kalu <igwejk@github.com>
 site_description: GitHub Universe 2023 | Workshop
 
 remote_name: origin
 remote_branch: gh-pages
 
-# edit_uri: blob/main/docs/
-edit_uri: edit/main/docs/
-
-repo_url: https://github.com/demos-by-igwejk/github-devsecops-fundamentals
-
-repo_name: gh-devsecops-fundamentals
+repo_url: https://github.com/demos-by-igwejk/github-devsecops-fundamentals/
+repo_name: GitHub Repository
 
 theme:
   name: material
@@ -138,13 +136,14 @@ extra_css:
 
 nav:
   - index.md
+  - Prerequisites: prerequisites.md
   - Labs Instructions:
       - Introduction: Labs-Instructions/index.md
       - Collaborate:
           - Labs-Instructions/01.Collaborate/index.md
           - Labs-Instructions/01.Collaborate/01.md
           - Labs-Instructions/01.Collaborate/02.md
-          # - Labs-Instructions/01.Collaborate/03.md
+          - Labs-Instructions/01.Collaborate/03.md
       - Secure the Software Supply Chain:
           - Labs-Instructions/02.Secure-Software-Supply-Chain/index.md
           - Labs-Instructions/02.Secure-Software-Supply-Chain/00.md
@@ -155,4 +154,4 @@ nav:
           - Labs-Instructions/03.Automate-Release/index.md
           - Labs-Instructions/03.Automate-Release/01.md
           - Labs-Instructions/03.Automate-Release/02.md
-  # - Tetris Game: Tetris/index.html
+  - Tetris Game: Tetris-Game/index.html

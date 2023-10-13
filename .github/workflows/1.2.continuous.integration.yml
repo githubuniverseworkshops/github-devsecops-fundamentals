@@ -1,4 +1,4 @@
-name: Run Checks
+name: 1.2 Run Checks on Merge Queue
 
 on:
   merge_group:
@@ -15,7 +15,7 @@ env:
   SITE_DIR: site
   TETRIS_APP_HOST: "127.0.0.1"
   TETRIS_APP_PORT: "8080"
-  TETRIS_APP_PATH: "pages/githubuniverseworkshops/github-devsecops-fundamentals"
+  TETRIS_APP_PATH: "github-devsecops-fundamentals"
 
 jobs:
   run-acceptance:

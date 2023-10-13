@@ -1,4 +1,4 @@
-name: Version Changes to the Main Branch
+name: 2.1 Version Changes to the Main Branch
 
 on:
   push:
@@ -57,4 +57,4 @@ jobs:
             echo "Failed to creat tag $new_version, it probably already exists"
           fi
         env:
-          new_version: ${{ steps.get_new_version.outputs.new_version }}-pre-release
+          new_version: ${{ steps.get_new_version.outputs.new_version }}-release

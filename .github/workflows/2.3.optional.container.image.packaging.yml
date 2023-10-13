@@ -1,15 +1,11 @@
-name: Package Container Image
+name: 2.3 (Optional) Package Container Image
 
 on:
-  pull_request:
-    branches:
-      - main
   workflow_dispatch: {}
 
 permissions:
   contents: read
   packages: write
-
 
 jobs:
   build-and-push:
