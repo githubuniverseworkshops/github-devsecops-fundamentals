@@ -1,4 +1,4 @@
-name: Package Delivery Artifacts
+name: Package Delivery Artifacts & Pre-Release
 
 on:
   push:
