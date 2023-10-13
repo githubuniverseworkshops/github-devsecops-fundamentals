@@ -28,7 +28,7 @@ jobs:
           enablement: "true"
       - name: Build Site
         run: |
-          mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
+          python mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
       - name: Create Pre-Release
         uses: softprops/action-gh-release@v1
         with:
