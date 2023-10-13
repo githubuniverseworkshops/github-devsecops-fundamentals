@@ -68,7 +68,7 @@ jobs:
                 repo: context.repo.repo,
                 tag_name: '${{ github.ref }}',
                 prerelease: true,
-                discussion_category_name: '📣 Announcements',
+                discussion_category_name: 'Announcement',
                 generate_release_notes: true,
                 make_latest: 'true',
                 headers: {
