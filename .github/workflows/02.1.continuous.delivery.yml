@@ -17,7 +17,7 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY_ACTIONS_ASSISTANT }}
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ steps.generate-app-token.outputs.token }}
