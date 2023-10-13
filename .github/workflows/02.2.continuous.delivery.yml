@@ -82,7 +82,6 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 release_id: '${{ steps.create-pre-release.outputs.result }}',
-                name: '${{ env.SITE_DIR }}.zip',
                 data: '@${{ env.SITE_DIR }}.zip',
                 headers: {
                   'X-GitHub-Api-Version': '2022-11-28'
