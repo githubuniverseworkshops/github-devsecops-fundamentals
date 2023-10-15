@@ -142,21 +142,21 @@ extra_css:
 nav:
   - index.md
   - Prerequisites: prerequisites.md
-  - Labs Instructions:
-      - Introduction: Labs-Instructions/index.md
+  - Exercises:
+      - Introduction: exercises/index.md
       - Collaborate:
-          - Labs-Instructions/01.Collaborate/index.md
-          - Labs-Instructions/01.Collaborate/01.md
-          - Labs-Instructions/01.Collaborate/02.md
-          - Labs-Instructions/01.Collaborate/03.md
+          - exercises/01.collaborate/index.md
+          - exercises/01.collaborate/01.md
+          - exercises/01.collaborate/02.md
+          - exercises/01.collaborate/03.md
       - Secure the Software Supply Chain:
-          - Labs-Instructions/02.Secure-Software-Supply-Chain/index.md
-          - Labs-Instructions/02.Secure-Software-Supply-Chain/00.md
-          - Labs-Instructions/02.Secure-Software-Supply-Chain/01.md
-          - Labs-Instructions/02.Secure-Software-Supply-Chain/02.md
-          - Labs-Instructions/02.Secure-Software-Supply-Chain/02-extra.md
+          - exercises/02.secure.the.software.supply.chain/index.md
+          - exercises/02.secure.the.software.supply.chain/00.md
+          - exercises/02.secure.the.software.supply.chain/01.md
+          - exercises/02.secure.the.software.supply.chain/02.md
+          - exercises/02.secure.the.software.supply.chain/02-extra.md
       - Automate-Release:
-          - Labs-Instructions/03.Automate-Release/index.md
-          - Labs-Instructions/03.Automate-Release/01.md
-          - Labs-Instructions/03.Automate-Release/02.md
-  - Tetris Game: Tetris-Game/index.html
+          - exercises/03.automate.release/index.md
+          - exercises/03.automate.release/01.md
+          - exercises/03.automate.release/02.md
+  - Tetris Game: .tetris.game/index.html
