@@ -12,6 +12,9 @@ remote_branch: gh-pages
 repo_url: https://github.com/demos-by-igwejk/github-devsecops-fundamentals/
 repo_name: GitHub Repository
 
+exclude_docs: |
+  !.github.reference
+
 theme:
   name: material
 
@@ -105,7 +108,9 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.snippets
+
+  - pymdownx.snippets:
+      check_paths: true
 
   - pymdownx.superfences:
       custom_fences:
