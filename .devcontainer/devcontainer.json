@@ -28,7 +28,8 @@
         "ms-vsliveshare.vsliveshare",
         "ms-playwright.playwright",
         "GitHub.copilot-chat",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "pomdtr.excalidraw-editor"
       ]
     }
   },
@@ -41,7 +42,6 @@
   "portsAttributes": {
     "8080": {
       "label": "Site",
-    
     }
   }
 }
