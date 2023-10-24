@@ -132,7 +132,9 @@ extra:
   generator: true
 copyright: >-
   Copyright &copy; 2023
-  <a href="https://github.com/services" target="_blank">GitHub Expert Services</a>
+  <a href="https://github.com/services" target="_blank" style="font-weight: bold;">
+    GitHub Expert Services
+  </a>
 
 extra_javascript:
   # KATEX
