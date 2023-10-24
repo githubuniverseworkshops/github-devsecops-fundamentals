@@ -1,7 +1,7 @@
 ---
 edit_uri: edit/main/docs/
 
-site_url: https://demos-by-igwejk.github.io/github-devsecops-fundamentals
+site_url: https://githubuniverseworkshops.github.io/github-devsecops-fundamentals
 site_name: GitHub DevSecOps Fundamentals
 site_author: Igwe Kalu <igwejk@github.com>
 site_description: GitHub Universe 2023 | Workshop
@@ -9,7 +9,7 @@ site_description: GitHub Universe 2023 | Workshop
 remote_name: origin
 remote_branch: gh-pages
 
-repo_url: https://github.com/demos-by-igwejk/github-devsecops-fundamentals/
+repo_url: https://github.com/githubuniverseworkshops/github-devsecops-fundamentals/
 repo_name: GitHub Repository
 
 exclude_docs: |
