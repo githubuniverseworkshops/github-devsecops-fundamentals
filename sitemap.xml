@@ -1,73 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/prerequisites/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/01.Collaborate/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/01.Collaborate/01/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/01.collaborate/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/01.Collaborate/02/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/01.collaborate/01/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/01.Collaborate/03/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/01.collaborate/02/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/02.Secure-Software-Supply-Chain/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/01.collaborate/03/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/02.Secure-Software-Supply-Chain/00/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/02.Secure-Software-Supply-Chain/01/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/00/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/02.Secure-Software-Supply-Chain/02-extra/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/01/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/02.Secure-Software-Supply-Chain/02/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/02-extra/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/03.Automate-Release/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/02/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/03.Automate-Release/01/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/03.automate.release/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://studious-spork-n89w31m.pages.github.io/Labs-Instructions/03.Automate-Release/02/</loc>
-         <lastmod>2023-10-12</lastmod>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/03.automate.release/01/</loc>
+         <lastmod>2023-10-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://demos-by-igwejk.github.io/github-devsecops-fundamentals/exercises/03.automate.release/02/</loc>
+         <lastmod>2023-10-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
