@@ -8,7 +8,7 @@
     "dockerfile": "./Dockerfile",
     "context": ".."
   },
-  "postAttachCommand": "python -m mkdocs serve --dev-addr 127.0.0.1:8080",
+  "postAttachCommand": "python -m mkdocs serve --clean --dev-addr 127.0.0.1:8080",
   "forwardPorts": [
     8080
   ],
