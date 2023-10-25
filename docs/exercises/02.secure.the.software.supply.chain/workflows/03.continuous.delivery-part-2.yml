@@ -1,0 +1,26 @@
+- name: Draft release
+  uses: actions/github-script@v6
+  id: draft-release
+  with:
+    github-token: ${{ steps.generate-app-token.outputs.token }}
+    script: |
+
+      const response = await github.request(
+        'POST /repos/{owner}/{repo}/releases',
+        {
+          owner: context.repo.owner,
+          repo: context.repo.repo,
+          draft: true,
+          tag_name: '${{ github.ref }}',
+          discussion_category_name: 'announcements',
+          generate_release_notes: true,
+          make_latest: 'legacy',
+          headers: {
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        }
+      );
+
+      console.dir(response);
+
+      return response.data.id;

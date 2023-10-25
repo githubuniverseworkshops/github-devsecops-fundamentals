@@ -25,34 +25,11 @@ In this step we will containerize the application using Docker and push to GitHu
 1. Navigate to `.github/workflows` and open the file `03.extra.container.image.packaging.yml`.
 2. Add the following content to the file:
 !!! example "Package Delivery Artifacts"
-      ``` yaml
-      name: Package Container Image
-      on:
-        pull_request:
-          branches:
-          - main
-      premissons:
-        contents: read
-        packages: write
-      jobs:
-        build-and-push:
-          runs-on: ubuntu-latest
-          steps:
-          - uses: actions/checkout@v3
-          # Connect to GitHub Container Registry (ghcr)
-          - name: Login to GitHub Container Registry
-            uses: docker/login-action@v3
-            with:
-              registry: ghcr.io
-              username: ${{ github.actor }}
-              password: ${{ secrets.GITHUB_TOKEN }}
-          - name: Build and push to GHCR
-            uses: docker/build-push-action@v2
-            with:
-              push: true
-              context: ${{ github.workspace }}
-              tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+
+      ```yaml
+      --8<-- "docs/exercises/02.secure.the.software.supply.chain/workflows/04.docker.yml"
       ```
+
 !!! example "Push changes to Github"
        ``` bash
        git add .
