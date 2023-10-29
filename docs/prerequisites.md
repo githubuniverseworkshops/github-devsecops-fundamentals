@@ -6,10 +6,12 @@ To ensure a seamless workshop experience, complete the following checklist items
 
     1. ## :fontawesome-brands-github-alt:{ .lg .middle } **Set up a GitHub account**
 
-        Login to your GitHub  You may create a new GitHub account, if you do not already have one. (1)
+        Login to your GitHub account.
+        
+        You may create a new GitHub account, if you do not already have one. (1)
         { .annotate }
 
-        1.  :bulb: Keep your **@handle** handy.
+        1.  :bulb: Clicking the button below will open the page on a new tab, for you to create a new GitHub account. Keep your **`@handle`** handy after you have logged in.
 
         [:material-cursor-default-click: Create a new GitHub account](https://github.com/signup){.md-button target="\_blank"}
         <br /><br />
