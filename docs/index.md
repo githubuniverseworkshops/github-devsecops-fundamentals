@@ -17,10 +17,10 @@ This self-paced workshop will enable you acquire the capabilities to implement a
     > - [x] Remove complications due to tool-bloat
 
     <br />
-    [Complete the **:footprints: Prerequisites** checklist.](./prerequisites.md){ .md-button .md-button--primary }
+    [:material-cursor-default-click: Complete the **:footprints: Prerequisites** checklist!](./prerequisites.md){ .md-button .md-button--primary }
 
     > ## :books: Resources
-    > 
+    >
     > - [Secure at every step](https://github.com/features/security)
     > - [Start coding instantly with Codespaces](https://github.com/features/codespaces)
     > - [Create diagrams to convey information through charts and graphs](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams)
