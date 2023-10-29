@@ -11,13 +11,13 @@ To ensure a seamless workshop experience, complete the following checklist items
 
         1.  :bulb: Keep your **@handle** handy.
 
-        [:material-mouse: Create a new GitHub account](https://github.com/signup){.md-button target="\_blank"}
+        [:material-cursor-default-click: Create a new GitHub account](https://github.com/signup){.md-button target="\_blank"}
         <br /><br />
         ---
 
     2. ## :material-source-repository-multiple:{ .lg .middle } **Clone the workshop project to your own account**
 
-        1. [:material-mouse: Create workshop project](https://github.com/new?template_owner=githubuniverseworkshops&template_name=github-devsecops-fundamentals&owner=%40me&name=github-devsecops-fundamentals&description=GitHub+DevSecOps+Fundamentals+%7C+GitHub+Universe+2023+workshop&visibility=public){.md-button target="\_blank"}
+        1. [:material-cursor-default-click: Create workshop project](https://github.com/new?template_owner=githubuniverseworkshops&template_name=github-devsecops-fundamentals&owner=%40me&name=github-devsecops-fundamentals&description=GitHub+DevSecOps+Fundamentals+%7C+GitHub+Universe+2023+workshop&visibility=public){.md-button target="\_blank"}
         2. In the new tab, most of the prompts will automatically fill in for you.
 
              - For owner, choose your personal account.
@@ -39,7 +39,7 @@ To ensure a seamless workshop experience, complete the following checklist items
 
     3. ## :octicons-feed-discussion-16: **Enable Discussions**
 
-        [:material-mouse: Enabling GitHub Discussions on your repository](https://docs.github.com/en/discussions/quickstart#enabling-github-discussions-on-your-repository){.md-button target="\_blank"}
+        [:material-cursor-default-click: Enabling GitHub Discussions on your repository](https://docs.github.com/en/discussions/quickstart#enabling-github-discussions-on-your-repository){.md-button target="\_blank"}
         <br /><br />
         ---
 
@@ -116,7 +116,7 @@ To ensure a seamless workshop experience, complete the following checklist items
 
         1. Navigate to the <span style="background-color: #000; color: #fff; font-weight: bold; padding: 0.25em 0.75em;">:octicons-code-16: Code</span> tab.
 
-        2. Open the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">:octicons-code-16: Code :material-menu-down:</span> menu and click on :material-mouse: <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Create codespaces on main</span>.
+        2. Open the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">:octicons-code-16: Code :material-menu-down:</span> menu and click on :material-cursor-default-click: <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Create codespaces on main</span>.
 
             ??? info "Example view"
                 ![Create a new GitHub Codespaces](assets/img/create-a-new-codespaces.png)
