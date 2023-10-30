@@ -57,12 +57,18 @@ To ensure a seamless workshop experience, complete the following checklist items
 
     5. ## :octicons-dependabot-16:{ .lg .middle } **Create a GitHub App**
 
+          <!--
           <form action="https://github.com/settings/apps/new?state=abc123" method="post">
-            Your handle: <input type="text" name="handle" id="handle">
+            <input
+              required
+              class="md-input md-input--stretch"
+              type="text" name="handle" id="handle"
+              placeholder="Enter your @handle here (without the '@')"
+            />
             <input type="hidden" name="manifest" id="manifest">
-            <br>
             <input class="md-button" type="submit" value="Create App">
           </form>
+          -->
 
           1. Goto to the profile menu at the top-right corner
 
