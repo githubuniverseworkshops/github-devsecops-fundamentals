@@ -137,6 +137,7 @@ copyright: >-
   </a>
 
 extra_javascript:
+  - assets/javascripts/extra.js
   # KATEX
   - assets/javascripts/katex.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js

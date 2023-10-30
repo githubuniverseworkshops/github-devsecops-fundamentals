@@ -7,7 +7,7 @@ To ensure a seamless workshop experience, complete the following checklist items
     1. ## :fontawesome-brands-github-alt:{ .lg .middle } **Set up a GitHub account**
 
         Login to your GitHub account.
-        
+
         You may create a new GitHub account, if you do not already have one. (1)
         { .annotate }
 
@@ -56,6 +56,13 @@ To ensure a seamless workshop experience, complete the following checklist items
         ---
 
     5. ## :octicons-dependabot-16:{ .lg .middle } **Create a GitHub App**
+
+          <form action="https://github.com/settings/apps/new?state=abc123" method="post">
+            Your handle: <input type="text" name="handle" id="handle">
+            <input type="hidden" name="manifest" id="manifest">
+            <br>
+            <input class="md-button" type="submit" value="Create App">
+          </form>
 
           1. Goto to the profile menu at the top-right corner
 

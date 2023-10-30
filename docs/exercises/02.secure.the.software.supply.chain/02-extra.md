@@ -7,7 +7,7 @@ In this step we will containerize the application using Docker and push to GitHu
 - _**Outcome:**_ The application will be containerized and pushed to GitHub Container Registry.
 
 !!! Note
-    We will continue working on the same branch `contiuous-integration-deployment`.
+    We will continue working on the same branch `continuous-integration-deployment`.
 
 ## Prerequisites
 

@@ -91,7 +91,7 @@
             GT--xDR: Pushes
             deactivate GT
 
-            D->>GR: Creates a Pre-Release
+            D->>GR: Creates a Release
             activate GR
             GR->>GR: Continuous Deployment (Staging)
             GR--xST: Deploys
