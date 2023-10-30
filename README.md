@@ -11,5 +11,5 @@
 </p>
 
 <p align="center">
-Goto <a style="font-weight=bold" href="https://githubuniverseworkshops.github.io/github-devsecops-fundamentals">≫ workshop site</a>
+Goto <a style="font-weight=bold" href="https://githubuniverseworkshops.github.io/github-devsecops-fundamentals">:eyes: workshop site</a>
 </p>

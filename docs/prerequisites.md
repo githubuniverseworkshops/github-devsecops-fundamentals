@@ -32,7 +32,7 @@ To ensure a seamless workshop experience, complete the following checklist items
                      - [Free use of GitHub Advanced Security features](https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security#about-advanced-security-features).
              - Scroll down and click the <span class="gh-button-green">Create repository</span> button at the bottom of the form.
 
-                ??? info "Example view"
+                ??? info "Sample screenshot"
 
                     ![Create a new repository from a template](assets/img/create-a-new-repository.png)
         3. After your new repository is created, wait about 20 seconds, then refresh the page.
@@ -50,7 +50,7 @@ To ensure a seamless workshop experience, complete the following checklist items
         1. Navigate to the <span class="gh-repo-settings">:octicons-gear-16: Settings</span> tab on your new workshop repository.
         2. Under the <span class="gh-repo-settings-menu">Security</span> section of the menu, select <span class="gh-repo-settings-menu-selected-item">:octicons-codescan-16: Code security and analysis</span>. Then configure the settings to match as follows (by clicking <span class="gh-repo-settings-button">Enable</span> where the option is/becomes available).
 
-            ??? info "Example view"
+            ??? info "Sample screenshot"
 
                 ![code-security-and-analysis-configuration](assets/img/code-security-and-analysis-configuration.png)
         ---
@@ -88,40 +88,47 @@ To ensure a seamless workshop experience, complete the following checklist items
 
 
 
-            - [Generate a private key](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/managing-private-keys-for-github-apps#generating-private-keys){.md-button target="\_blank"}
-            - Goto `https://github.com/apps/<YOUR-HANDLE>-pusher-bot`. Install the app in the repository.
-            - Save app private key to secrets
-            - Save appid to vars
+            - Generate a private key for the new GitHub App as documented in [**:eyes: here**](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/managing-private-keys-for-github-apps#generating-private-keys){ target="\_blank" }.
+            - Goto `https://github.com/apps/<YOUR-HANDLE>-pusher-bot`. Install the app in the repository you created earlier.
+            - Save the GitHub App private key to your new repository's secrets under the name of `APP_PRIVATE_KEY_ACTIONS_ASSISTANT`.
 
-            !!! tip "Why a GitHub App is required"
+                👀 [**Creating secrets for a repository**](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository).
+            - Save the GitHub App's `appid` to your new repository's variables under the name of `APP_ID_ACTIONS_ASSISTANT`.
 
-                > When you use the repository's `GITHUB_TOKEN` to perform tasks, events triggered by the `GITHUB_TOKEN`, with the exception of `workflow_dispatch` and `repository_dispatch`, will not create a new workflow run. This prevents you from accidentally creating recursive workflow runs. For example, if a workflow run pushes code using the repository's `GITHUB_TOKEN`, a new workflow will not run even when the repository contains a workflow configured to run when push events occur.
+                👀 [**Creating configuration variables for a repository**](https://docs.github.com/en/actions/learn-github-actions/variables#creating-configuration-variables-for-a-repository)
+
+            !!! question "What is the use of a GitHub App?"
+
+                > _When you use the repository's `GITHUB_TOKEN` to perform tasks, events triggered by the `GITHUB_TOKEN`, with the exception of `workflow_dispatch` and `repository_dispatch`, will not create a new workflow run. This prevents you from accidentally creating recursive workflow runs. For example, if a workflow run pushes code using the repository's `GITHUB_TOKEN`, a new workflow will not run even when the repository contains a workflow configured to run when push events occur._
                 >
-                > If you do want to trigger a workflow from within a workflow run, you can use a GitHub App installation access token or a personal access token instead of `GITHUB_TOKEN` to trigger events that require a token.
+                > _If you do want to trigger a workflow from within a workflow run, you can use a GitHub App installation access token or a personal access token instead of `GITHUB_TOKEN` to trigger events that require a token._
                 >
-                > If you use a GitHub App, you'll need to create a GitHub App and store the app ID and private key as secrets.
+                > _If you use a GitHub App, you'll need to create a GitHub App and store the app ID and private key as secrets._
                 >
-                > ~[Triggering a workflow from a workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow)
+                > ~ [Triggering a workflow from a workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow)
+
+                During the course of the workshop exercises, you will discover how the GitHub App is used to trigger the automatic deployment of release artifacts.
 
         ---
 
 
     6.  ## :octicons-project-16:{ .lg .middle } **Create a project board for the repository**
 
-        1. Open the workshop repository in a new tab.
+        1. Open the recently created workshop repository in a new tab.
 
         2. Navigate to the <span style="background-color: #000; color: #fff; font-weight: bold; padding: 0.25em 0.75em;">:octicons-project-template-16: Projects</span> tab on your new workshop repository.
 
         3. Open the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">:octicons-code-16: Link a project :material-menu-down:</span> dropdown menu. Then select the **New Project** option.
 
-            ??? info "Example view"
+            ??? info "Sample screenshot"
                 ![select-new-project](assets/img/select-new-project.png)
 
         4. Click on the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">:octicons-code-16: New project :material-menu-down:</span> button to start the project creation wizard.
-        5. Select the **:octicons-tools-16: Feature** template.
-        6. Finally click on the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Create</span> button.
+        5. Select the **:octicons-people-16: Team backlog** template.
+        6. Give a name to the project 
+        7. Finally click on the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Create</span> button.
 
-            ??? info "Example view"
+            ??? info "Sample screenshot"
                 ![create-project](assets/img/create-project.png)
         ---
 
@@ -133,7 +140,7 @@ To ensure a seamless workshop experience, complete the following checklist items
 
         2. Open the <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">:octicons-code-16: Code :material-menu-down:</span> menu and click on :material-cursor-default-click: <span style="background-color: green; font-weight: bold; padding: 0.25em 0.75em; border-radius: 0.5em">Create codespaces on main</span>.
 
-            ??? info "Example view"
+            ??? info "Sample screenshot"
                 ![Create a new GitHub Codespaces](assets/img/create-a-new-codespaces.png)
 
         3. {==
