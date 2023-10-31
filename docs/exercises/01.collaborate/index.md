@@ -2,7 +2,7 @@
 
 !!! quote "Continuous Collaboration"
 
-    Continuous Collaboration enables working together across technical and cultural boundaries as a unified team to accomplish a goal through practices like ChatOps and technologies like MS Teams. Individuals and interactions over processes and tools; Working software over comprehensive documentation; Customer collaboration over contract negotiation; Responding to change over following a plan.
+    Continuous collaboration enables working together across technical and cultural boundaries as a unified team, reducing frictions and increasing the velocity to accomplish common goals.
 
     ## Objectives
 

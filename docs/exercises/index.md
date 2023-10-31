@@ -2,27 +2,27 @@
 
 # :fontawesome-solid-flask-vial: Introduction
 
-!!! quote ":octicons-milestone-16: Create a **Tetris Game**"
+!!! quote ":octicons-milestone-16: Workshop Exercises"
 
-    The exercises provide you guidance for implementing DevSecOps at the fundamental level with the GitHub platform. On completion, you would have gained the experience to seamlessly implement capabilities in
+    The workshop exercises provide guidance for implementing DevSecOps at the fundamental level with the GitHub platform. On completion, you would have gained the exposure to enable you seamlessly implement DevSecOps capabilities such as
 
-    - [x] continuous collaboration
-    - [x] continuous planning
-    - [x] continuous integration
-    - [x] continuous delivery
-    - [x] continuous quality
-    - [x] continuous security
+    - [x] Continuous collaboration
+    - [x] Continuous planning
+    - [x] Continuous integration
+    - [x] Continuous delivery
+    - [x] Continuous quality
+    - [x] Continuous security
+
+    This workshop site also serves as the ***product*** we shall target for development. And During the course of the exercises, you will discover how you can rapidly build and test the site locally, and implement standardized tests to enable automated quality checks on the site.
 
     ---
 
     === "**Workshop Scenario**"
 
-        You are working in a team that owns _this_ site, and a new business goal has come into the vision of your organisation. In order to grow engagement with the site...
+        You are working in a team that owns **_this_** site, and a new business goal has come into the vision of your organisation. In order to grow engagement with the site...
 
-        <br />
         > _...the goal is to create a **Tetris Game** to delight our site visitors._
 
-        <br />
         <figure markdown>
             ![Tetris Game](../assets/img/tetris-game.png){ loading=lazy }
             <figcaption>Outcome: Tetris Game</figcaption>
@@ -34,17 +34,17 @@
 
         ![Milestones](../assets/img/milestones.png)
 
-        - [x] Collaboration
+        - [x] Collaborate
 
               Facilitate onboarding into the site project and enable project development at high velocity for stakeholders of different experience with the project.
 
-        - [x] Securing the software supply chain
+        - [x] Secure the software supply chain
 
               Seamlessly implement application security and secure the software supply chain.
 
-        - [x] Release automation
+        - [x] Automate Deployment of Releases
 
-              Get value to the end-user faster.
+              Reliably deliver value to the end-user at high velocity.
 
     === "Process Outcome"
 
