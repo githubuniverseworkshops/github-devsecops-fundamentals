@@ -28,7 +28,7 @@ In this step we will containerize the application using Docker and push to GitHu
 
     ```bash
     git add .
-    git commit -m "feat: update continuous integration workflow - add security checks step"
+    git commit -m "feat: update continuous integration workflow - push Docker image to GitHub Packages"
     git push origin continuous-deployment
     ```
 
