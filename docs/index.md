@@ -4,7 +4,10 @@
 
 This self-paced workshop will enable you acquire the capabilities to implement a DevSecOps mindset, leveraging the GitHub platform for a seamless developer experience.
 
-![end-to-end](assets/img/e2e-github.png)
+<figure markdown style="background-color: #777; padding: 1em; border-radius: 0.25em; color: var(--md-primary-fg-color);">
+![GitHub Platform](assets/img/e2e-github.png){ loading=lazy }
+<figcaption style="font-weight: bold; font-style: normal;">GitHub Platform</figcaption>
+</figure>
 
 !!! success ""
 
