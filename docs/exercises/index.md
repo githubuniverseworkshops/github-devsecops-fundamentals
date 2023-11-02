@@ -17,7 +17,7 @@
 
     ---
 
-    === "**Workshop Scenario**"
+    === "**:material-numeric-1-circle: Workshop Scenario**"
 
         You are working in a team that owns **_this_** site, and a new business goal has come into the vision of your organisation. In order to grow engagement with the site...
 
@@ -28,7 +28,7 @@
             <figcaption>Outcome: Tetris Game</figcaption>
         </figure>
 
-    === "**Milestones**"
+    === "**:material-numeric-2-circle: Milestones**"
 
         The workshop objectives will be delivered by completion of the following milestones
 
@@ -46,11 +46,11 @@
 
               Reliably deliver value to the end-user at high velocity.
 
-    === "Process Outcome"
+    === ":material-numeric-3-circle: Process Outcome"
 
         High Level Continuous Deployment Architecture
 
-        ```{ .mermaid }
+        ```mermaid
 
         sequenceDiagram
             actor D as Developer
