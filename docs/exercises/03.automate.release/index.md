@@ -1,17 +1,47 @@
-# :test_tube: Release Automation
+# :test_tube: Deploy the application to GitHub Pages
 
-!!! quote ":moneybag: Enable rapid onboarding to project development"
+In this step once we clarify the application is ready to be deployed to release we will create a new release deployment.
 
-    1. Continuing on the existing `git` branch, implement the release automation workflow
+- _**Objective:**_ Create a new release deployment.
+- _**Estimated completion time:**_ 5 minutes
+- _**Outcome:**_ A production release will be created.
 
-        ```yaml title=".github/workflows/3.continuous.deployment.yml"
-        --8<-- "reference.implementations/workflows/3.continuous.deployment.yml"
+!!! note
+    We will continue working on the same branch `continuous-deployment`.
+
+## :books: Resources
+
+- [GitHub Actions](https://docs.github.com/en/actions)
+
+## :pencil: Lab
+
+1. Navigate to `.github/workflows` and open the file `03.continuous.deployment.yml`.
+2. Add the following content to the file:
+
+    !!! example "Deploy Release"
+
+        ```yaml
+        --8<-- "docs/exercises/03.automate.release/workflows/01.continuous-deployment.yml"
         ```
 
-    1. Commit the changes to a new branch and push it
+    !!! example "Push changes to Github"
 
         ```bash
         git add .
-        git commit -m "Implement release automation"
-        git push -u origin continuous-deployment
+        git commit -m "feat: update continuous integration workflow - deploy app to GitHub Pages"
+        git push origin continuous-deployment
         ```
+
+---
+
+## :star: Recap
+
+So far, we have reached the following milestones:
+
+1. Enable Security Features and checks on [Step](../02.secure.the.software.supply.chain/00.md).
+2. Create a new release tag on [Step](../02.secure.the.software.supply.chain/01.md).
+3. Build and Upload Application Artifact on [Step](../02.secure.the.software.supply.chain/02.md).
+4. Container Image Packaging on [Step](../02.secure.the.software.supply.chain/02-extra.md).
+5. Create a new release deployment.
+
+Now let's move to our final step by merging the pull request to main branch on [Step](01.md) and test all of the steps above.
