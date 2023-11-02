@@ -8,6 +8,7 @@ allow-licenses:
   - MIT
   - GPL-3.0
   - BSD-3-Clause
+  - Apache-2.0
 # ([String]). Block the pull request on these licenses (optional)
 # Possible values: Any  `spdx_id` value(s) from https://docs.github.com/en/rest/licenses
 # deny-licenses:
