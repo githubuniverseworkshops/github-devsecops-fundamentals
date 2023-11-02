@@ -1,10 +1,10 @@
-# :test_tube: Collaboration
+# :test_tube: Collaborate
 
 !!! quote "Continuous Collaboration"
 
     Continuous collaboration enables working together across technical and cultural boundaries as a unified team, reducing frictions and increasing the velocity to accomplish common goals.
 
-    ## Objectives
+    ## :octicons-goal-16: Objectives
 
     Behaviors that enable addressing the challenge include
 

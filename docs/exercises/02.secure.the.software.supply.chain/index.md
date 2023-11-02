@@ -1,29 +1,28 @@
 # :test_tube: Secure the Software Supply Chain
 
-## Introduction
+!!! quote "Continuous Delivery and Secure Supply Chain"
 
-The goal of this lab is to create a software supply chain for the `Tetris` app. The software supply chain will consist of the following steps:
+    Supply chain security is integral to continuous delivery. With the accelerated use of open source, most projects depend on hundreds of open-source dependencies. This poses a security problem: what if the dependencies you're using are vulnerable? You could be putting your users at risk of a supply chain attack. One of the most important things you can do to protect your supply chain is to patch your vulnerable dependencies and replace any malware.
 
-1. Create Integration Checks
-2. Continuous Delivery
-3. Release
-4. Compliance
+    Building on the progress from previous exercises, we will apply supply chain security and continuously deliver the product by fulfilling the following objectives.
 
-## Objectives
+    ## :octicons-goal-16: Objectives
 
-The objectives of this lab are to:
+    - [x] Create Integration **Checks** for the `Tetris` app using GitHub Actions.
+    - [x] Create a Continuous Delivery workflow for the `Tetris` app using GitHub Actions.
+    - [x] Create a new release `tag` for the `Tetris` app using GitHub Actions.
+    - [x] Create a Compliance using CodeQL, Dependency Review, and Dependabot.
 
-1. Create Integration Checks for the `Tetris` app using GitHub Actions.
-2. Create a Continuous Delivery workflow for the `Tetris` app using GitHub Actions.
-3. Create a new release `tag` for the `Tetris` app using GitHub Actions.
-4. Create a Compliance using CodeQL, Dependency Review, and Dependabot.
+    ## :octicons-check-16: Expected Outcomes
 
-## Lab Outcomes
+    The outcomes of this lab are:
 
-The outcomes of this lab are:
+    - [x] Increased familiarity with GitHub Actions.
+    - [x] Familiarity with GitHub Packages.
+    - [x] Familiarity with the GitHub CodeQL analysis.
+    - [x] Familiarity with the GitHub Dependency Review Action.
+    - [x] Familiarity with the GitHub Dependabot.
 
-1. Get familiar with GitHub Actions.
-2. Get familiar with GitHub Packages.
-3. Get familiar with the GitHub CodeQL analysis.
-4. Get familiar with the GitHub Dependency Review Action.
-5. Get familiar with the GitHub Dependabot.
+    ## 📚 Resources
+
+    - [About status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks)

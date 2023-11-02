@@ -1,47 +1,12 @@
-# :test_tube: Deploy the application to GitHub Pages
+# :test_tube: Automate Deployment of Releases
 
-In this step once we clarify the application is ready to be deployed to release we will create a new release deployment.
+!!! quote "Continuous Deployment"
 
-- _**Objective:**_ Create a new release deployment.
-- _**Estimated completion time:**_ 5 minutes
-- _**Outcome:**_ A production release will be created.
+    Continuous deployment (CD) is the practice of using automation to publish and deploy software updates. As part of the typical CD process, the code is automatically built and tested before deployment.
+    
+    Continuous deployment is often coupled with continuous integration which we have seen earlier. Building on the progress from previous exercises, we will apply continuous deployment mindset by fulfilling the following objectives.
 
-!!! note
-    We will continue working on the same branch `continuous-deployment`.
+    ## :octicons-goal-16: Objectives
 
-## :books: Resources
-
-- [GitHub Actions](https://docs.github.com/en/actions)
-
-## :pencil: Lab
-
-1. Navigate to `.github/workflows` and open the file `03.continuous.deployment.yml`.
-2. Add the following content to the file:
-
-    !!! example "Deploy Release"
-
-        ```yaml
-        --8<-- "docs/exercises/03.automate.release/workflows/01.continuous-deployment.yml"
-        ```
-
-    !!! example "Push changes to Github"
-
-        ```bash
-        git add .
-        git commit -m "feat: update continuous integration workflow - deploy app to GitHub Pages"
-        git push origin continuous-deployment
-        ```
-
----
-
-## :star: Recap
-
-So far, we have reached the following milestones:
-
-1. Enable Security Features and checks on [Step](../02.secure.the.software.supply.chain/00.md).
-2. Create a new release tag on [Step](../02.secure.the.software.supply.chain/01.md).
-3. Build and Upload Application Artifact on [Step](../02.secure.the.software.supply.chain/02.md).
-4. Container Image Packaging on [Step](../02.secure.the.software.supply.chain/02-extra.md).
-5. Create a new release deployment.
-
-Now let's move to our final step by merging the pull request to main branch on [Step](01.md) and test all of the steps above.
+    - [x] Validate releases
+    - [x] Execute production deployments on successful validation of respective releases
