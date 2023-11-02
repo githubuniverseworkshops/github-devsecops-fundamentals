@@ -29,8 +29,7 @@ jobs:
           pip install -r requirements.txt
       - name: Build Site
         run: |
-          # python -m mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
-          python -m mkdocs build --clean --verbose --site-dir '${{ env.SITE_DIR }}'
+          python -m mkdocs build --clean --strict --verbose --site-dir '${{ env.SITE_DIR }}'
       - name: Archive Site
         run: |
           zip -r ${{ env.SITE_DIR }}.zip ${{ env.SITE_DIR }}
