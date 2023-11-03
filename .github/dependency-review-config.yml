@@ -1,5 +1,6 @@
 # Possible values: "critical", "high", "moderate", "low"
 fail-on-severity: moderate
+comment-summary-in-pr: always
 
 # You can only include one of these two options: `allow-licenses` and `deny-licenses`
 # ([String]). Only allow these licenses (optional)

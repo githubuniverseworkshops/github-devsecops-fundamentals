@@ -11,6 +11,7 @@ permissions:
   checks: write
   contents: read
   security-events: write
+  pull-requests: write
 
 env:
   CI: true
