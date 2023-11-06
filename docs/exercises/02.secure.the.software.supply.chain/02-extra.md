@@ -6,7 +6,7 @@
 
 
     !!! Note
-        We will continue working on the same branch `continuous-deployment`.
+        We will continue working on the same branch `feature/tetris-game`.
 
     1. Navigate to `.github/workflows` and open the file `3.extra.container.image.packaging.yml`.
     2. Add the following content to the file:
@@ -22,7 +22,7 @@
             ```bash
             git add .
             git commit -m "feat: update continuous integration workflow - push Docker image to GitHub Packages"
-            git push origin continuous-deployment
+            git push origin feature/tetris-game
             ```
 
     ---
