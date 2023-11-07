@@ -12,9 +12,6 @@ remote_branch: gh-pages
 repo_url: https://github.com/githubuniverseworkshops/github-devsecops-fundamentals/
 repo_name: GitHub Repository
 
-exclude_docs: |
-  !reference.implementations
-
 theme:
   name: material
 
@@ -169,4 +166,4 @@ nav:
           - exercises/03.automate.release/index.md
           - exercises/03.automate.release/00.md
           - exercises/03.automate.release/01.md
-  - Tetris Game: .tetris.game/index.html
+  - Tetris Game: tetris.game/index.html
