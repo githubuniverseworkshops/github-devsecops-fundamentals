@@ -38,6 +38,21 @@
   border-radius: 0.25em;
 }
 
+.gh-button-grey {
+  background-color: #eee;
+  color: #000;
+  font-weight: bold;
+  padding: 0.25em 0.75em;
+  border-radius: 0.25em;
+}
+
+.gh-button-green > .gh-button-green-with-dropdown {
+  border-left-style: solid;
+  border-left-color: #070;
+  margin-left: 0.25em;
+  padding-left: 0.25em;
+}
+
 .hidden {
   display: none;
 }
