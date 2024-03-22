@@ -1,68 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/</loc>
-         <lastmod>2023-11-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/prerequisites/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/01.collaborate/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/01.collaborate/01/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/01.collaborate/02/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/01/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/02.secure.the.software.supply.chain/02/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/03.automate.release/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/03.automate.release/01/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/03.automate.release/02/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://githubuniverseworkshops.github.io/github-devsecops-fundamentals/exercises/recap/</loc>
-         <lastmod>2023-11-09</lastmod>
+         <lastmod>2024-03-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
